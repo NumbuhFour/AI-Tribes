@@ -1,0 +1,15 @@
+====Player========
+
+
+
+====Tribesmen=====
+	==Hunters==
+	
+	==Gatherers==
+
+
+====Animals=======
+	==Prey==
+	
+	==Predators==
+
