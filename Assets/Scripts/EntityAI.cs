@@ -7,9 +7,10 @@ public class EntityAI : MonoBehaviour {
 	private Choice currentChoice;
 	
 	public Choice CurrentChoice { get { return currentChoice; } }
-	protected void SetChoice<T>() where T extends Choice{
+	protected Choice SetChoice<T>() where T : Choice{
 		if(currentChoice) Destroy(currentChoice);
 		currentChoice = GetComponent<T>()
+
 	}
 	protected void DestroyChoice() {
 		if(currentChoice) Destroy(currentChoice);
@@ -20,9 +21,15 @@ public class EntityAI : MonoBehaviour {
 	public virtual void Start () {
 		this.agent = GetComponent<NavMeshAgent>()
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public virtual void Update() {
+		if(CurrentChoice.IsDone){
+			DestroyChoice ();
+			OnChoiceEnd ();
+		}
+	}
+
+	public virtual void OnChoiceEnd(){
+
 	}
 }
