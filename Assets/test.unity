@@ -501,6 +501,21 @@ MonoBehaviour:
   forwardSpeed: 0
   turnSpeed: 0
   sidestepSpeed: 0
+  rayCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 90
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &620936842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1054,26 @@ MonoBehaviour:
   forwardSpeed: 50
   turnSpeed: 30
   sidestepSpeed: 20
+  rayCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 42.8854065
+      value: .485048175
+      inSlope: -.0216619335
+      outSlope: -.0216619335
+      tangentMode: 0
+    - time: 90
+      value: 0
+      inSlope: -.00318865501
+      outSlope: -.00318865501
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!195 &1206234033
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1111,7 +1146,7 @@ Transform:
   m_PrefabInternal: {fileID: 1220430694}
   m_GameObject: {fileID: 1206234030}
   m_LocalRotation: {x: 0, y: .60876143, z: 0, w: .793353379}
-  m_LocalPosition: {x: -.419999987, y: .540000021, z: -9.57999992}
+  m_LocalPosition: {x: -3.20000005, y: .5, z: -38.2000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1152,15 +1187,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -.419999987
+      value: -3.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .540000021
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.57999992
+      value: -38.2000008
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1292,6 +1327,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1373027374}
   m_RootOrder: 3
+--- !u!1 &1768897461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1768897465}
+  - 33: {fileID: 1768897464}
+  - 136: {fileID: 1768897463}
+  - 23: {fileID: 1768897462}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1768897462
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768897461}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 28f84a0e2384d2a43960b97a48e4cf08, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!136 &1768897463
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768897461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1768897464
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768897461}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1768897465
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768897461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.60000002, y: 3.70000005, z: -15}
+  m_LocalScale: {x: 4.92511988, y: 4.9251194, z: 4.9251194}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &1943756434
 GameObject:
   m_ObjectHideFlags: 0

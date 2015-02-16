@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour {
 	public float turnSpeed;
 	public float sidestepSpeed; //Maybe?
 
+
+	public AnimationCurve rayCurve = new AnimationCurve(new Keyframe(0,1), new Keyframe(90,0));
 	//Probably will need seeking distances (when to slow, when to stop, how slow to get)
 	//public AnimationCurve seekSlowdown = new AnimationCurve(new Keyframe(0,1), new Keyframe(1,0)); //Slowdown(y) curve by distance(x)
 
@@ -36,7 +38,7 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		Flee(target);
+		Seek(target);
 	}
 
 	/// <summary>
@@ -62,6 +64,11 @@ public class Movement : MonoBehaviour {
 				Stop ();
 			}
 		}
+
+		bool frontHit;
+		float obstruct = ThrowRays(10, rayCurve, this.rigidbody.velocity.magnitude*1.8f, out frontHit);
+		Turn (-Mathf.Sign(obstruct), obstruct*turnSpeed/5); //TODO scale turn speed by velocity
+
 	}
 
 	/// <summary>
@@ -123,7 +130,7 @@ public class Movement : MonoBehaviour {
 		Vector3 target = new Vector3(destination.x,this.transform.position.y,destination.z) - this.transform.position;
 		Vector3 forward = this.transform.forward;
 		Debug.DrawRay(this.transform.position, target*100,Color.blue);
-		Debug.DrawRay(this.transform.position, forward*100, Color.green);
+		Debug.DrawRay(this.transform.position, forward*100, Color.yellow);
 		return Vector3.Angle(forward,target);
 	} 
 	private float GetDirectionTo(Vector3 destination){
@@ -132,6 +139,45 @@ public class Movement : MonoBehaviour {
 		return Mathf.Sign (Vector3.Cross(forward,target).y);
 		
 	} 
+
+	/// <summary>
+	/// Throws rays to test for collision. Returns float based on 
+	/// which rays hit at what angle. CW = positive, CCW = negative.
+	/// Further rays from forward vec equate to less return. 
+	/// Average is returned.
+	/// </summary>
+	/// <returns>Weighted hit angle sorta</returns>
+	/// <param name="count">Amount of rays to throw</param>
+	/// <param name="curve">Ray distance curve per angle</param>
+	/// <param name="maxDist">Farthest ray</param>
+	/// <param name="frontHit">Returns true if ray straight ahead hits something</param>
+	private float ThrowRays(int count, AnimationCurve curve, float maxDist, out bool frontHit){
+		Vector3 pos = this.transform.position;
+		Vector3 up = this.transform.up;
+		frontHit = false;
+		float rtn = 0;
+		for(int i = 0; i < count; i++){
+			float angle = i*(90/count);
+			Vector3 ray = this.transform.forward;
+			ray = Quaternion.AngleAxis(angle,up)*ray;
+
+			if(i ==0){ //Front ray
+				frontHit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist);
+				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,frontHit ? Color.red:Color.green);
+			}else { //Mirror
+				bool hit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist); //CW
+				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
+				if(hit) rtn += curve.Evaluate(angle);
+
+				ray = this.transform.forward; //CCW
+				ray = Quaternion.AngleAxis(-angle,up)*ray;
+				hit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist);
+				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
+				if(hit) rtn -= curve.Evaluate(angle);
+			}
+		}
+		return rtn;
+	}
 	
 	public string DebugData(){
 		return "Angle: " + GetAngleTo(this.target.position) + 
