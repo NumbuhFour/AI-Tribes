@@ -10,8 +10,6 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
 
-	public Transform TestDestination;
-
 	[Range(0,3)]
 	public float speedMult = 1.0f;
 
@@ -32,13 +30,11 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		agent = this.GetComponent<NavMeshAgent>();
-		this.target = TestDestination;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		Seek(target);
 	}
 
 	/// <summary>
