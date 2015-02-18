@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GathererAI : TribesmanAI {
 
+
 	public float sightDistance = 20f;
 
 	public enum States {Searching,	//Searching for bushes
@@ -18,6 +19,7 @@ public class GathererAI : TribesmanAI {
 	private int taskTime = 0;
 	
 	
+
 
 	// Use this for initialization
 	public override void Start () {
