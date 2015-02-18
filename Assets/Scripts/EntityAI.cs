@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Movement))]
 public class EntityAI : MonoBehaviour {
 
-	protected NavMeshAgent agent;
+	protected Movement movement;
 	private Choice currentChoice;
 	
 	public Choice CurrentChoice { get { return currentChoice; } }
@@ -19,7 +20,7 @@ public class EntityAI : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
-		this.agent = GetComponent<NavMeshAgent>();
+		this.movement = GetComponent<Movement>();
 	}
 
 	public virtual void Update() {

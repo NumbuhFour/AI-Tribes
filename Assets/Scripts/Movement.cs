@@ -10,8 +10,6 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
 
-	public Transform TestDestination;
-
 	[Range(0,3)]
 	public float speedMult = 1.0f;
 
@@ -19,8 +17,9 @@ public class Movement : MonoBehaviour {
 	public float turnSpeed;
 	public float sidestepSpeed; //Maybe?
 
-
-	public AnimationCurve rayCurve = new AnimationCurve(new Keyframe(0,1), new Keyframe(90,0));
+	
+	public AnimationCurve rayDistCurve = new AnimationCurve(new Keyframe(0,1), new Keyframe(90,0));
+	public AnimationCurve rayWeightCurve = new AnimationCurve(new Keyframe(0,1), new Keyframe(90,0)); //How much each ray causes turning
 	//Probably will need seeking distances (when to slow, when to stop, how slow to get)
 	//public AnimationCurve seekSlowdown = new AnimationCurve(new Keyframe(0,1), new Keyframe(1,0)); //Slowdown(y) curve by distance(x)
 
@@ -32,13 +31,11 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		agent = this.GetComponent<NavMeshAgent>();
-		this.target = TestDestination;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		Seek(target);
 	}
 
 	/// <summary>
@@ -47,17 +44,21 @@ public class Movement : MonoBehaviour {
 	/// </summary>
 	/// <param name="trans">Transform to seek</param>
 	public void Seek(Transform trans){
+		Seek(trans.position);
+	}
+	public void Seek(Vector3 pos){
+		pos = new Vector3(pos.x, this.transform.position.y, pos.z);
 		this.SwitchToSteering();
-		float angle = GetAngleTo(trans.position);
-		float direction = GetDirectionTo(trans.position);
+		float angle = GetAngleTo(pos);
+		float direction = GetDirectionTo(pos);
 		if(angle > 5f){
 			float speed = Mathf.Min(angle/50f, 1);
 			Turn (direction,speed);
 		}
 		
 		if(angle < 90){
-			float dist = (this.transform.position - trans.position).magnitude;
-			if(dist > 10) {
+			float dist = (this.transform.position - pos).magnitude;
+			if(dist > Mathf.Max (Mathf.Min (this.rigidbody.velocity.magnitude/2,20),2) ) {
 				float speed = Mathf.Min (1-(angle/150f),1);
 				GoForward (speed);
 			}else{
@@ -66,8 +67,11 @@ public class Movement : MonoBehaviour {
 		}
 
 		bool frontHit;
-		float obstruct = ThrowRays(10, rayCurve, this.rigidbody.velocity.magnitude*1.8f, out frontHit);
-		Turn (-Mathf.Sign(obstruct), obstruct*turnSpeed/5); //TODO scale turn speed by velocity
+		float vel = this.rigidbody.velocity.magnitude;
+		float obstruct = ThrowRays(32, rayDistCurve, rayWeightCurve, vel, out frontHit);
+		if(frontHit)
+			Turn (1, turnSpeed/vel*1.6f); //TODO scale turn speed by velocity
+		else Turn (Mathf.Sign(obstruct), Mathf.Abs (obstruct)*turnSpeed/vel*1.2f); //TODO scale turn speed by velocity
 
 	}
 
@@ -77,17 +81,21 @@ public class Movement : MonoBehaviour {
 	/// </summary>
 	/// <param name="trans">Transform to flee</param>
 	public void Flee(Transform trans){
+		Flee(trans.position);
+	}
+	public void Flee(Vector3 pos){
+		pos = new Vector3(pos.x, this.transform.position.y, pos.z);
 		this.SwitchToSteering();
-		float angle = GetAngleTo(trans.position);
-		float direction = GetDirectionTo(trans.position);
+		float angle = GetAngleTo(pos);
+		float direction = GetDirectionTo(pos);
 		if(angle < 170f){
-			float speed = Mathf.Min(angle/50f, 1);
+			float speed = Mathf.Min(angle/170f, 1); //Slowing as we get closer to face target
 			Turn (-direction,speed);
 		}
 		
 		if(angle > 90){
-			float dist = (this.transform.position - trans.position).magnitude;
-			if(dist < 30) {
+			float dist = (this.transform.position - pos).magnitude;
+			if(dist < 60) {
 				float invAngle = 180-angle;
 				float speed = Mathf.Min (1-(invAngle/150f),1);
 				GoForward (speed);
@@ -102,16 +110,17 @@ public class Movement : MonoBehaviour {
 	/// </summary>
 	public void Stop(){
 		this.SwitchToSteering();
-		this.rigidbody.AddForce(this.rigidbody.velocity.normalized*-1); //Needs jitter prevention
+		//this.rigidbody.AddForce(this.rigidbody.velocity.normalized*-1.5f); //Needs jitter prevention
+		rigidbody.velocity = rigidbody.velocity * 0.98f;
 	}
 
 
-	protected void GoForward(float mult=1f){
+	public void GoForward(float mult=1f){
 		this.SwitchToSteering();
 		this.rigidbody.AddForce(this.transform.forward*this.forwardSpeed*mult*speedMult);
 	}
 
-	protected void Turn(float direction, float mult=1f){
+	public void Turn(float direction, float mult=1f){
 		this.SwitchToSteering();
 		this.rigidbody.AddTorque(0,Mathf.Sign(direction)*this.turnSpeed*mult*speedMult,0); //Needs jitter prevention
 	}
@@ -126,10 +135,15 @@ public class Movement : MonoBehaviour {
 		rb.isKinematic = true;
 	}
 	
+	public void PathTo(Vector3 target){
+		SwitchToPathing();
+		this.agent.SetDestination(new Vector3(target.x, this.transform.position.y, target.z));
+	}
+	
 	private float GetAngleTo(Vector3 destination){
 		Vector3 target = new Vector3(destination.x,this.transform.position.y,destination.z) - this.transform.position;
 		Vector3 forward = this.transform.forward;
-		Debug.DrawRay(this.transform.position, target*100,Color.blue);
+		Debug.DrawRay(this.transform.position, target,Color.blue);
 		Debug.DrawRay(this.transform.position, forward*100, Color.yellow);
 		return Vector3.Angle(forward,target);
 	} 
@@ -151,36 +165,35 @@ public class Movement : MonoBehaviour {
 	/// <param name="curve">Ray distance curve per angle</param>
 	/// <param name="maxDist">Farthest ray</param>
 	/// <param name="frontHit">Returns true if ray straight ahead hits something</param>
-	private float ThrowRays(int count, AnimationCurve curve, float maxDist, out bool frontHit){
+	private float ThrowRays(int count, AnimationCurve distCurve, AnimationCurve weightCurve, float maxDist, out bool frontHit){
 		Vector3 pos = this.transform.position;
 		Vector3 up = this.transform.up;
 		frontHit = false;
 		float rtn = 0;
+		count /= 2;
+		float leftObs = 0; //Prevents rays from adding up
+		float rightObs = 0;
 		for(int i = 0; i < count; i++){
 			float angle = i*(90/count);
 			Vector3 ray = this.transform.forward;
 			ray = Quaternion.AngleAxis(angle,up)*ray;
 
 			if(i ==0){ //Front ray
-				frontHit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist);
-				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,frontHit ? Color.red:Color.green);
+				frontHit = Physics.Raycast(pos,ray,Mathf.Max(0.001f,distCurve.Evaluate(angle)*maxDist));
+				Debug.DrawRay(pos, ray*distCurve.Evaluate(angle)*maxDist,frontHit ? Color.red:Color.green);
 			}else { //Mirror
-				bool hit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist); //CW
-				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
-				if(hit) rtn += curve.Evaluate(angle);
+				bool hit = Physics.Raycast(pos,ray,Mathf.Max(0.001f,distCurve.Evaluate(angle)*maxDist)); //CW
+				Debug.DrawRay(pos, ray*distCurve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
+				if(hit) rightObs = Mathf.Max (weightCurve.Evaluate(angle), rightObs);
 
 				ray = this.transform.forward; //CCW
 				ray = Quaternion.AngleAxis(-angle,up)*ray;
-				hit = Physics.Raycast(pos,ray,curve.Evaluate(angle)*maxDist);
-				Debug.DrawRay(pos, ray*curve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
-				if(hit) rtn -= curve.Evaluate(angle);
+				hit = Physics.Raycast(pos,ray,Mathf.Max(0.001f,distCurve.Evaluate(angle)*maxDist));
+				Debug.DrawRay(pos, ray*distCurve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
+				if(hit) leftObs = Mathf.Max (weightCurve.Evaluate(angle), leftObs);
 			}
 		}
+		rtn = leftObs-rightObs;
 		return rtn;
-	}
-	
-	public string DebugData(){
-		return "Angle: " + GetAngleTo(this.target.position) + 
-			"\nDirection" + GetDirectionTo(this.target.position);
 	}
 }
