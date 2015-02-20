@@ -3,24 +3,6 @@ using System.Collections;
 
 public class GathererAI : TribesmanAI {
 
-
-	public float sightDistance = 20f;
-
-	public enum States {Searching,	//Searching for bushes
-						Seeking, 	//Seeking out a bush
-						Gathering,	//At bush, gathering berries
-						Returning,	//Returning to tribe to drop off food 
-						Fleeing }	//Fleeing creature
-
-	private States state = States.Searching;
-	
-	private Vector3 target;
-	private bool hasTarget = false;
-	private int taskTime = 0;
-	
-	
-
-
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
@@ -32,8 +14,8 @@ public class GathererAI : TribesmanAI {
 		switch(state){
 		case States.Searching: Wander(); break;
 		case States.Seeking: SeekBush(); break;
-		case States.Gathering: Gathering(); break;
-		case States.Returning: Returning(); break;
+		case States.Gathering: Gather(); break;
+		case States.Returning: Return(); break;
 		}
 		
 		this.gameObject.SendMessage("SetDebugMessage", "State: " + state);
@@ -63,32 +45,6 @@ public class GathererAI : TribesmanAI {
 		}
 	}
 	
-	private void Gathering(){
-		taskTime += (int)(Time.deltaTime*1000); //milliseconds
-		if(taskTime > 6000){
-			state = States.Returning;
-			hasTarget = false;
-			taskTime = 0;
-		}
-	}
-	
-	private void Returning(){
-		if(!hasTarget){
-			Vector3 targetPos = GameObject.FindGameObjectWithTag("Village").transform.position;
-			targetPos.x += Random.Range(-20,20);
-			targetPos.z += Random.Range(-20,20);
-			target = targetPos;
-			hasTarget = true;
-		}
-		
-		movement.Seek(target);
-		if(IsWithinDistance(target, 10f)){
-			state = States.Searching;
-			hasTarget = false;
-			taskTime = 0;
-		}
-	}
-	
 	private void Wander(){
 		if(taskTime <= 0){ //Need to make a new wander target
 			if(GetDistanceToVillage() > 200){
@@ -115,14 +71,6 @@ public class GathererAI : TribesmanAI {
 		int deltaTime = (int)(Time.deltaTime*1000); //milliseconds
 		taskTime -= deltaTime;
 		
-	}
-	
-	private float GetDistanceToVillage(){
-		return (this.transform.position - GameObject.FindGameObjectWithTag("Village").transform.position).magnitude;
-	}
-	
-	private bool IsWithinDistance(Vector3 pos, float dist){
-		return (this.transform.position - pos).sqrMagnitude <= dist*dist;
 	}
 
 }

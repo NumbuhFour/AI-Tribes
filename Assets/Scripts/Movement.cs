@@ -68,10 +68,10 @@ public class Movement : MonoBehaviour {
 
 		bool frontHit;
 		float vel = this.rigidbody.velocity.magnitude;
-		float obstruct = ThrowRays(32, rayDistCurve, rayWeightCurve, vel, out frontHit);
+		float obstruct = ThrowRays(32, rayDistCurve, rayWeightCurve, vel *2, out frontHit);
 		if(frontHit)
 			Turn (1, turnSpeed/vel*1.6f); //TODO scale turn speed by velocity
-		else Turn (Mathf.Sign(obstruct), Mathf.Abs (obstruct)*turnSpeed/vel*1.2f); //TODO scale turn speed by velocity
+		else Turn (Mathf.Sign(obstruct), Mathf.Abs (obstruct)*turnSpeed/vel*0.8f); //TODO scale turn speed by velocity
 
 	}
 
