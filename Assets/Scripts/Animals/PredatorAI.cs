@@ -35,10 +35,13 @@ public class PredatorAI : AnimalAI {
 	}
 
 	private void SeekPrey(){
-		movement.Seek(target);
+		movement.Seek(targetObject.transform);
 		if(!IsWithinDistance(target, sightDistance)){
 			state = States.Searching;
-		}
+		}/*else {
+			target = targetObject.transform.position;
+		}*/
+		target = targetObject.transform.position;
 	}
 
 	private void Wander(){

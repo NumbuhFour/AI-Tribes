@@ -56,4 +56,9 @@ public class EntityAI : MonoBehaviour {
 	protected bool IsWithinDistance(Vector3 pos, float dist){
 		return (this.transform.position - pos).sqrMagnitude <= dist*dist;
 	}
+
+	void OnDrawGizmos() {
+		Debug.Log("RAWRAWRA");
+		Gizmos.DrawIcon(transform.position + Vector3.up*10, "uglyassicon.png", true);
+	}
 }

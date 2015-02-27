@@ -41,7 +41,8 @@ public class HunterAI : TribesmanAI {
 			state = States.Searching;
 			targetObject = null;
 		}
-		movement.Seek(target);
+		movement.Seek(targetObject.transform);
+		target = targetObject.transform.position;
 	}
 	
 	private void Wander(){
