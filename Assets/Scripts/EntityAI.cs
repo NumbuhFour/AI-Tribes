@@ -5,7 +5,25 @@ using System.Collections;
 public class EntityAI : MonoBehaviour {
 
 	protected Movement movement;
-	private Choice currentChoice;
+	protected Choice currentChoice;
+
+	public float sightDistance;
+
+	protected Vector3 target;
+	public GameObject targetObject;
+	protected bool hasTarget = false;
+	protected int taskTime = 0;
+
+	public enum States {
+		Searching,	//Searching for stuff
+		Seeking, 	//Seeking object
+		Gathering,	//At object, gathering food
+		Returning,	//Returning to home area
+		Fleeing,	//Fleeing creature 
+		Killing		//Fighting something
+	}	
+
+	protected States state;
 	
 	public Choice CurrentChoice { get { return currentChoice; } }
 	protected Choice SetChoice<T>() where T : Choice{
@@ -21,6 +39,7 @@ public class EntityAI : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		this.movement = GetComponent<Movement>();
+		state = States.Searching;
 	}
 
 	public virtual void Update() {
@@ -32,5 +51,9 @@ public class EntityAI : MonoBehaviour {
 
 	public virtual void OnChoiceEnd(){
 
+	}
+
+	protected bool IsWithinDistance(Vector3 pos, float dist){
+		return (this.transform.position - pos).sqrMagnitude <= dist*dist;
 	}
 }

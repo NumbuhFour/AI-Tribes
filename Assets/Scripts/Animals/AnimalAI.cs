@@ -12,4 +12,13 @@ public class AnimalAI : EntityAI {
 	void Update () {
 	
 	}
+
+	protected void Gather(){
+		taskTime += (int)(Time.deltaTime*1000); //milliseconds
+		if(taskTime > 6000){
+			state = States.Searching;
+			hasTarget = false;
+			taskTime = 0;
+		}
+	}
 }
