@@ -4,7 +4,7 @@ using System.Collections;
 public class GathererAI : TribesmanAI {
 
 
-	public float sightDistance = 20f;
+	public float sightDistance;
 
 	public enum States {Searching,	//Searching for bushes
 						Seeking, 	//Seeking out a bush
