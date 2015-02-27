@@ -3,20 +3,6 @@ using System.Collections;
 
 public class GathererAI : TribesmanAI {
 
-	public float sightDistance;
-
-	public enum States {Searching,	//Searching for bushes
-						Seeking, 	//Seeking out a bush
-						Gathering,	//At bush, gathering berries
-						Returning,	//Returning to tribe to drop off food 
-						Fleeing }	//Fleeing creature
-
-	private States state = States.Searching;
-	
-	private Vector3 target;
-	private bool hasTarget = false;
-	private int taskTime = 0;
-	
 	// Use this for initialization
 	public override void Start () {
 		base.Start();

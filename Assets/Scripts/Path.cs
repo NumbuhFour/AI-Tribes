@@ -13,6 +13,19 @@ public class Path : MonoBehaviour {
 		for(int i = 0; i < nodes.Length; i++) if(nodes[i]==node) return i;
 		return -1;
 	}
+
+	public PathNode getNearestNode(Vector3 position){
+		int n = 0;
+		float d = float.MaxValue;
+		for (int i = 0; i < nodes.Length; i++) {
+			float d1 = Mathf.Abs((nodes[i].transform.position  - position).sqrMagnitude);
+			if (d1 < d) {
+				d = d1;
+				n = i;
+			}
+		}
+		return nodes[n];
+	}
 	// Use this for initialization
 	void Start () {
 		nodes = new PathNode[transform.childCount];

@@ -115,14 +115,20 @@ public class Movement : MonoBehaviour {
 	}
 
 
-	public void GoForward(float mult=1f){
+	public void GoForward(float mult=1.0f){
 		this.SwitchToSteering();
 		this.rigidbody.AddForce(this.transform.forward*this.forwardSpeed*mult*speedMult);
 	}
 
-	public void Turn(float direction, float mult=1f){
+	public void Turn(float direction, float mult=1.0f){
 		this.SwitchToSteering();
-		this.rigidbody.AddTorque(0,Mathf.Sign(direction)*this.turnSpeed*mult*speedMult,0); //Needs jitter prevention
+		if (float.IsNaN(mult))
+			mult = 1.0f;
+		float t = Mathf.Sign (direction) * this.turnSpeed * mult * speedMult;
+		if (!float.IsNaN(t))
+			this.rigidbody.AddTorque (0, t, 0); //Needs jitter prevention
+		else
+			Debug.Log("Mathf.Sign (direction): " + Mathf.Sign(direction) + "this.turnSpeed: " + turnSpeed + "\nmult: " + mult + "\nspeedMult");
 	}
 
 	public void SwitchToSteering(){

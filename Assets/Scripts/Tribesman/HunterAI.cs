@@ -45,7 +45,6 @@ public class HunterAI : TribesmanAI {
 	}
 	
 	private void Wander(){
-		Debug.Log ("wandering");
 		if(taskTime <= 0){ //Need to make a new wander target
 			if(GetDistanceToVillage() > 200){
 				state = States.Returning;
@@ -58,7 +57,6 @@ public class HunterAI : TribesmanAI {
 				hasTarget = true;
 			}
 		} else{ //Wandering to a spot in a direction
-			Debug.Log ("checking for prey");
 			movement.Seek(target);
 			GameObject prey = SearchForPrey();
 			if(prey != null) {
