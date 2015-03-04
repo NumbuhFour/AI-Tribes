@@ -46,7 +46,7 @@ public class HunterAI : TribesmanAI {
 	}
 	
 	private void Wander(){
-		if(taskTime <= 0){ //Need to make a new wander target
+		/*if(taskTime <= 0){ //Need to make a new wander target
 			if(GetDistanceToVillage() > 200){
 				state = States.Returning;
 				hasTarget = false;
@@ -71,7 +71,7 @@ public class HunterAI : TribesmanAI {
 			}
 		}
 		int deltaTime = (int)(Time.deltaTime*1000); //milliseconds
-		taskTime -= deltaTime;
+		taskTime -= deltaTime;*/
 		
 	}
 	

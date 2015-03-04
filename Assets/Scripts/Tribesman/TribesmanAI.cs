@@ -14,10 +14,6 @@ public class TribesmanAI : EntityAI {
 
 	}
 
-	protected float GetDistanceToVillage(){
-		return (this.transform.position - GameObject.FindGameObjectWithTag("Village").transform.position).magnitude;
-	}
-
 	protected void Gather(){
 		taskTime += (int)(Time.deltaTime*1000); //milliseconds
 		if(taskTime > 6000){

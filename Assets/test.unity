@@ -177,6 +177,10 @@ Prefab:
       propertyPath: m_Name
       value: Gatherer
       objectReference: {fileID: 0}
+    - target: {fileID: 11452170, guid: 899234c4d78c10547815ff81d6392081, type: 2}
+      propertyPath: sightDistance
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 899234c4d78c10547815ff81d6392081, type: 2}
   m_RootGameObject: {fileID: 1206234030}
@@ -3273,8 +3277,9 @@ GameObject:
   - 114: {fileID: 926420400}
   - 54: {fileID: 926420399}
   - 65: {fileID: 926420398}
-  - 114: {fileID: 926420397}
   - 114: {fileID: 926420396}
+  - 114: {fileID: 926420405}
+  - 114: {fileID: 926420397}
   m_Layer: 0
   m_Name: Predator
   m_TagString: Untagged
@@ -3312,17 +3317,18 @@ MonoBehaviour:
 --- !u!114 &926420397
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 7e5f126f06028084b8f55e54788d3595,
+  m_PrefabParentObject: {fileID: 11423440, guid: 7e5f126f06028084b8f55e54788d3595,
     type: 2}
   m_PrefabInternal: {fileID: 1583313184}
   m_GameObject: {fileID: 926420394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9a23e5def9c344ab8695d4cf8fd88a, type: 3}
+  m_Script: {fileID: 11500000, guid: 441a0afd437dc304fa29c75701a752aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightDistance: 30
-  targetObject: {fileID: 0}
+  FoodTags:
+  - Human
+  species: {fileID: 0}
 --- !u!65 &926420398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3464,6 +3470,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1583313184}
   m_GameObject: {fileID: 926420394}
   m_Mesh: {fileID: 4300000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
+--- !u!114 &926420405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11423642, guid: 7e5f126f06028084b8f55e54788d3595,
+    type: 2}
+  m_PrefabInternal: {fileID: 1583313184}
+  m_GameObject: {fileID: 926420394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodTags: []
+  sightDistance: 80
+  targetObject: {fileID: 0}
 --- !u!1 &932623560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,11 +3952,11 @@ GameObject:
   - 95: {fileID: 1206234034}
   - 195: {fileID: 1206234033}
   - 114: {fileID: 1206234032}
-  - 114: {fileID: 1206234031}
   - 54: {fileID: 1206234039}
   - 65: {fileID: 1206234038}
-  - 114: {fileID: 1206234040}
   - 114: {fileID: 1206234041}
+  - 114: {fileID: 1206234040}
+  - 114: {fileID: 1206234031}
   m_Layer: 0
   m_Name: Gatherer
   m_TagString: Untagged
@@ -3946,15 +3967,18 @@ GameObject:
 --- !u!114 &1206234031
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 899234c4d78c10547815ff81d6392081,
+  m_PrefabParentObject: {fileID: 11488786, guid: 899234c4d78c10547815ff81d6392081,
     type: 2}
   m_PrefabInternal: {fileID: 13381345}
   m_GameObject: {fileID: 1206234030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 519d75721a9a22141b2c912a7d423bc4, type: 3}
+  m_Script: {fileID: 11500000, guid: c0b287cf9c2279c4ab11ee50fbb53667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FoodTags:
+  - Bush
+  species: {fileID: 0}
 --- !u!114 &1206234032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4117,17 +4141,19 @@ Rigidbody:
 --- !u!114 &1206234040
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: 899234c4d78c10547815ff81d6392081,
+  m_PrefabParentObject: {fileID: 11452170, guid: 899234c4d78c10547815ff81d6392081,
     type: 2}
   m_PrefabInternal: {fileID: 13381345}
   m_GameObject: {fileID: 1206234030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac0f38f9186de94cbe5fba2132998f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c8bfc3be957f244a8fe47ca13d6382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FoodTags: []
   sightDistance: 50
   targetObject: {fileID: 0}
+  state: 0
 --- !u!114 &1206234041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5135,9 +5161,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 7e5f126f06028084b8f55e54788d3595, type: 2}
+    - target: {fileID: 0}
       propertyPath: sightDistance
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423642, guid: 7e5f126f06028084b8f55e54788d3595, type: 2}
+      propertyPath: sightDistance
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e5f126f06028084b8f55e54788d3595, type: 2}
@@ -6099,7 +6129,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.89999962
+      value: -8.74927521
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6107,7 +6137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -40.5999985
+      value: -40.7878914
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6115,7 +6145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .60876143
+      value: -.0188005604
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalRotation.z
@@ -6123,13 +6153,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .793353379
+      value: .999823272
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
+    - target: {fileID: 0}
       propertyPath: sightDistance
       value: 25
       objectReference: {fileID: 0}
@@ -6144,6 +6174,10 @@ Prefab:
     - target: {fileID: 100002, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
       propertyPath: m_TagString
       value: Human
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424540, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
+      propertyPath: sightDistance
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
@@ -6668,8 +6702,9 @@ GameObject:
   - 114: {fileID: 2048162291}
   - 54: {fileID: 2048162290}
   - 65: {fileID: 2048162289}
-  - 114: {fileID: 2048162288}
   - 114: {fileID: 2048162287}
+  - 114: {fileID: 2048162296}
+  - 114: {fileID: 2048162288}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -6683,8 +6718,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
   m_PrefabInternal: {fileID: 1935263278}
   m_GameObject: {fileID: 2048162285}
-  m_LocalRotation: {x: 0, y: .60876143, z: 0, w: .793353379}
-  m_LocalPosition: {x: -8.89999962, y: .100000001, z: -40.5999985}
+  m_LocalRotation: {x: 0, y: -.0188005604, z: 0, w: .999823272}
+  m_LocalPosition: {x: -8.74927521, y: .100000001, z: -40.7878914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494596058}
@@ -6707,17 +6742,18 @@ MonoBehaviour:
 --- !u!114 &2048162288
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 31674d1b389d3de4d826e61eb928c090,
+  m_PrefabParentObject: {fileID: 11493188, guid: 31674d1b389d3de4d826e61eb928c090,
     type: 2}
   m_PrefabInternal: {fileID: 1935263278}
   m_GameObject: {fileID: 2048162285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1783ab058a4716d4ba65d0bc20eacbaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 441a0afd437dc304fa29c75701a752aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightDistance: 25
-  targetObject: {fileID: 0}
+  FoodTags:
+  - Animal
+  species: {fileID: 0}
 --- !u!65 &2048162289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6859,6 +6895,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1935263278}
   m_GameObject: {fileID: 2048162285}
   m_Mesh: {fileID: 4300000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
+--- !u!114 &2048162296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11424540, guid: 31674d1b389d3de4d826e61eb928c090,
+    type: 2}
+  m_PrefabInternal: {fileID: 1935263278}
+  m_GameObject: {fileID: 2048162285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c8bfc3be957f244a8fe47ca13d6382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodTags: []
+  sightDistance: 50
+  targetObject: {fileID: 0}
+  state: 0
 --- !u!1 &2055179911
 GameObject:
   m_ObjectHideFlags: 0

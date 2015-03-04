@@ -7,13 +7,6 @@ public class EntityAI : MonoBehaviour {
 	protected Movement movement;
 	protected Choice currentChoice;
 
-	public float sightDistance;
-
-	protected Vector3 target;
-	public GameObject targetObject;
-	protected bool hasTarget = false;
-	protected int taskTime = 0;
-
 	public enum States {
 		Searching,	//Searching for stuff
 		Seeking, 	//Seeking object
@@ -22,8 +15,15 @@ public class EntityAI : MonoBehaviour {
 		Fleeing,	//Fleeing creature 
 		Killing		//Fighting something
 	}	
-
 	protected States state;
+
+
+	public float sightDistance;
+
+	protected Vector3 target;
+	public GameObject targetObject;
+	protected bool hasTarget = false;
+	protected int taskTime = 0;
 	
 	public Choice CurrentChoice { get { return currentChoice; } }
 	protected Choice SetChoice<T>() where T : Choice{
@@ -39,7 +39,7 @@ public class EntityAI : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		this.movement = GetComponent<Movement>();
-		state = States.Searching;
+		//state = States.Searching;
 	}
 
 	public virtual void Update() {

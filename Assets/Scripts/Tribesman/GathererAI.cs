@@ -12,10 +12,10 @@ public class GathererAI : TribesmanAI {
 	// Update is called once per frame
 	void Update () {
 		switch(state){
-		case States.Searching: Wander(); break;
-		case States.Seeking: SeekBush(); break;
-		case States.Gathering: Gather(); break;
-		case States.Returning: Return(); break;
+			case States.Searching: Wander(); break;
+			//case States.Seeking: SeekBush(); break;
+			case States.Gathering: Gather(); break;
+			case States.Returning: Return(); break;
 		}
 		
 		this.gameObject.SendMessage("SetDebugMessage", "State: " + state);
@@ -36,7 +36,7 @@ public class GathererAI : TribesmanAI {
 		return null;
 	}
 	
-	private void SeekBush(){
+	private void SeekFood(){
 		movement.Seek(target);
 		if(IsWithinDistance(target, 10f)){
 			state = States.Gathering;
@@ -46,7 +46,7 @@ public class GathererAI : TribesmanAI {
 	}
 	
 	private void Wander(){
-		if(taskTime <= 0){ //Need to make a new wander target
+		/*if(taskTime <= 0){ //Need to make a new wander target
 			if(GetDistanceToVillage() > 200){
 				state = States.Returning;
 				hasTarget = false;
@@ -69,7 +69,7 @@ public class GathererAI : TribesmanAI {
 			}
 		}
 		int deltaTime = (int)(Time.deltaTime*1000); //milliseconds
-		taskTime -= deltaTime;
+		taskTime -= deltaTime;*/
 		
 	}
 
