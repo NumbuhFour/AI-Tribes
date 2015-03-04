@@ -50,7 +50,7 @@ public class EntityAI : MonoBehaviour {
 	}
 
 	public virtual void OnChoiceEnd(){
-
+		
 	}
 
 	protected bool IsWithinDistance(Vector3 pos, float dist){
@@ -58,7 +58,27 @@ public class EntityAI : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-		Debug.Log("RAWRAWRA");
-		Gizmos.DrawIcon(transform.position + Vector3.up*10, "uglyassicon.png", true);
+		string file = "uglyassicon.png";
+		switch(this.state){
+		case States.Searching:
+			file = "yellow_icon.png";
+			break;
+		case States.Seeking:
+			file = "turquise_icon.png";
+			break;
+		case States.Gathering:
+			file = "green_icon.png";
+			break;
+		case States.Returning:
+			file = "magenta_icon.png";
+			break;
+		case States.Fleeing:
+			file = "white_icon.png";
+			break;
+		case States.Killing:
+			file = "red_icon.png";
+			break;
+		}
+		Gizmos.DrawIcon(transform.position + Vector3.up*5, file, false);
 	}
 }
