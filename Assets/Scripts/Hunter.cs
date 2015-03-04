@@ -20,13 +20,15 @@ public class Hunter : Role {
 	}
 
 	//seeks target, returns false if out of range
-	public bool SeekPrey(GameObject target){
+	public int SeekPrey(GameObject target){
 		
-		if(!species.IsWithinDistance(target.transform.position, species.sightDistance)){
-			return false;
+		if(!species.IsInSight(target.transform.position)){
+			return 0;
 		}
 		movement.Seek(target.transform);
-		return true;
+		if (species.IsWithinReach(target.transform.position))
+			return 2;
+		return 1;
 	}
 
 	//roams at random

@@ -38,8 +38,11 @@ public class Animal : Species {
 				break;
 			}
 			case States.Seeking: {
-				if (!SeekFood(targetObject))
-					state = States.Searching;
+			int result = SeekFood(targetObject);
+			if (result == 0)
+				state = States.Searching;
+			else if (result == 2)
+				state = States.Gathering;
 				break;
 			}
 			case States.Gathering: Gather(); break;

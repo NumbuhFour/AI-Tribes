@@ -208,8 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodTags: []
-  sightDistance: 0
+  sightDistance: 50
+  reachDistance: 10
   targetObject: {fileID: 0}
+  state: 0
 --- !u!114 &11488786
 MonoBehaviour:
   m_ObjectHideFlags: 1

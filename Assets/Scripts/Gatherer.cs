@@ -37,13 +37,15 @@ public class Gatherer : Role {
 	}
 
 	//goes after target, returns false if target out of range
-	private bool SeekFood(GameObject target){
+	private int SeekFood(GameObject target){
 
-		if(!species.IsWithinDistance(target.transform.position, species.sightDistance)){
-			return false;
+		if(!species.IsInSight(target.transform.position)){
+			return 0;
 		}
 		movement.Seek(target.transform);
-		return true;
+		if (species.IsWithinReach(target.transform.position))
+			return 2;
+		return 1;
 	}
 
 	//roams randomly
