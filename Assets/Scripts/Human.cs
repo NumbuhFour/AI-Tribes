@@ -4,17 +4,6 @@ using System.Collections.Generic;
 
 public class Human : Species {
 
-	//will become decision tree
-	public enum States {
-		Searching,	//Searching for stuff
-		Seeking, 	//Seeking object
-		Gathering,	//At object, gathering food
-		Returning,	//Returning to home area
-		Fleeing,	//Fleeing creature 
-		Killing		//Fighting something
-	}	
-	public States state;
-
 	// Use this for initialization
 	public override void Start () {
 		base.Start();

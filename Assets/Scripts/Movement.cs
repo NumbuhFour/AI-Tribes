@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour {
 		
 		if(angle < 90){
 			float dist = (this.transform.position - pos).magnitude;
-			if(dist > Mathf.Max (Mathf.Min (this.rigidbody.velocity.magnitude/2,20),2) ) {
+			if(dist > Mathf.Max (Mathf.Min (this.GetComponent<Rigidbody>().velocity.magnitude/2,20),2) ) {
 				float speed = Mathf.Min (1-(angle/150f),1);
 				GoForward (speed);
 			}else{
@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour {
 		}
 
 		bool frontHit;
-		float vel = this.rigidbody.velocity.magnitude;
+		float vel = this.GetComponent<Rigidbody>().velocity.magnitude;
 		float obstruct = ThrowRays(32, rayDistCurve, rayWeightCurve, vel *2, out frontHit);
 		if(frontHit)
 			Turn (1, turnSpeed/vel*1.6f); //TODO scale turn speed by velocity
@@ -111,13 +111,13 @@ public class Movement : MonoBehaviour {
 	public void Stop(){
 		this.SwitchToSteering();
 		//this.rigidbody.AddForce(this.rigidbody.velocity.normalized*-1.5f); //Needs jitter prevention
-		rigidbody.velocity = rigidbody.velocity * 0.98f;
+		GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.98f;
 	}
 
 
 	public void GoForward(float mult=1.0f){
 		this.SwitchToSteering();
-		this.rigidbody.AddForce(this.transform.forward*this.forwardSpeed*mult*speedMult);
+		this.GetComponent<Rigidbody>().AddForce(this.transform.forward*this.forwardSpeed*mult*speedMult);
 	}
 
 	public void Turn(float direction, float mult=1.0f){
@@ -126,7 +126,7 @@ public class Movement : MonoBehaviour {
 			mult = 1.0f;
 		float t = Mathf.Sign (direction) * this.turnSpeed * mult * speedMult;
 		if (!float.IsNaN(t))
-			this.rigidbody.AddTorque (0, t, 0); //Needs jitter prevention
+			this.GetComponent<Rigidbody>().AddTorque (0, t, 0); //Needs jitter prevention
 		else
 			Debug.Log("Mathf.Sign (direction): " + Mathf.Sign(direction) + "this.turnSpeed: " + turnSpeed + "\nmult: " + mult + "\nspeedMult");
 	}
