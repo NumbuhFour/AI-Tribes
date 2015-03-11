@@ -25,7 +25,7 @@ public class Animal : Species {
 			case States.Searching: {
 				GameObject obj = CheckForFood();
 				if(obj != null) {
-					Debug.Log (obj);
+					//Debug.Log (obj);
 					state = States.Seeking;
 					target = obj.transform.position;
 					targetObject = obj;

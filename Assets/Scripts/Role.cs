@@ -30,4 +30,20 @@ public class Role : MonoBehaviour {
 	protected bool IsWithinDistance(Vector3 pos, float dist){
 		return (this.transform.position - pos).sqrMagnitude <= dist*dist;
 	}
+
+	public bool CheckForFood(){
+		List<GameObject> food = new List<GameObject>();
+		foreach (string tag in species.FoodTags){
+			GameObject[] source = GameObject.FindGameObjectsWithTag(tag);
+			foreach (GameObject s in source)
+				food.Add(s);
+		}
+		Vector3 pos = this.transform.position;
+		foreach(GameObject b in food){
+			if(species.IsWithinDistance(b.transform.position, species.sightDistance)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

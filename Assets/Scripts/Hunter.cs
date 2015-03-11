@@ -11,6 +11,7 @@ public class Hunter : Role {
 			species.SeekFood = SeekPrey;
 			species.Search = Roam;
 			species.CheckForFood = CheckForPrey;
+			species.initRole();
 		}
 	}
 	
@@ -22,11 +23,11 @@ public class Hunter : Role {
 	//seeks target, returns false if out of range
 	public int SeekPrey(GameObject target){
 		
-		if(!species.IsInSight(target.transform.position)){
+		if(!species.IsInSight(target)){
 			return 0;
 		}
 		movement.Seek(target.transform);
-		if (species.IsWithinReach(target.transform.position))
+		if (species.IsWithinReach(target))
 			return 2;
 		return 1;
 	}
