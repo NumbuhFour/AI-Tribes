@@ -70,9 +70,12 @@ public class Species : MonoBehaviour {
 	public bool IsInSight(GameObject obj){
 		return (this.transform.position - obj.transform.position).sqrMagnitude <= sightDistance*sightDistance;
 	}
-
+	
 	public bool IsWithinReach(GameObject obj){
-		return (this.transform.position - obj.transform.position).sqrMagnitude <= reachDistance*reachDistance;
+		return IsWithinReach(obj.transform.position);
+	}
+	public bool IsWithinReach(Vector3 pos){
+		return (this.transform.position - pos).sqrMagnitude <= reachDistance*reachDistance;
 	}
 	
 	void OnDrawGizmos() {

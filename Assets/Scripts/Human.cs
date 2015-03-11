@@ -54,7 +54,7 @@ public class Human : Species {
 				break;
 		}
 		taskTime = 0;
-		Debug.Log(gameObject.name + ": " + state);
+		//Debug.Log(gameObject.name + ": " + state);
 	}
 
 	//returns false if predators in the area
