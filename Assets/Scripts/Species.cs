@@ -14,7 +14,12 @@ public class Species : MonoBehaviour {
 		Fleeing,	//Fleeing creature 
 		Killing		//Fighting something
 	}	
-	public States state;
+	[SerializeField]
+	private States _state;
+	public States state {
+		get { return _state; }
+		set { _state = value; }
+	}
 
 	public List<string> FoodTags;
 

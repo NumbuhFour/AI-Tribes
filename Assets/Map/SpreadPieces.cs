@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class SpreadPieces : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class SpreadPieces : MonoBehaviour {
 	}
 
 	private void MakePiece(){
-		GameObject make = (GameObject)Instantiate(prefab);
+		GameObject make = (GameObject)PrefabUtility.InstantiatePrefab (prefab);
 		make.transform.SetParent(this.transform);
 		Vector3 pos = Quaternion.AngleAxis(Random.Range(0,360), Vector3.up) * Vector3.forward;
 		pos *= Random.Range(minRange, maxRange);

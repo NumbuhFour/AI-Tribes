@@ -11,7 +11,7 @@ public class Animal : Species {
 	
 	// Update is called once per frame
 	public override void Update () {
-		switch(state){
+		/*switch(state){
 			case States.Searching: {
 				GameObject obj = CheckForFood();
 				if(obj != null) {
@@ -38,17 +38,17 @@ public class Animal : Species {
 			case States.Gathering: Gather(); break;
 		}
 		
-		this.gameObject.SendMessage("SetDebugMessage", "State: " + state);
+		this.gameObject.SendMessage("SetDebugMessage", "State: " + state);*/
 	}
 
 	//gather food
 	protected void Gather(){
-		taskTime += (int)(Time.deltaTime*1000); //milliseconds
+		/*taskTime += (int)(Time.deltaTime*1000); //milliseconds
 		if(taskTime > 6000){
 			state = States.Searching;
 			hasTarget = false;
 			taskTime = 0;
-		}
+		}*/
 	}
 
 	//wanders at random, will eventually wander territory
