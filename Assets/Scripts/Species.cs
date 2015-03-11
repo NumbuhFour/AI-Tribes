@@ -25,6 +25,9 @@ public class Species : MonoBehaviour {
 
 	protected Movement movement;
 
+	public bool hasFood = false;
+
+	public delegate bool Test();
 	public delegate int Action(GameObject target);
 	public Action SeekFood;
 
@@ -52,21 +55,24 @@ public class Species : MonoBehaviour {
 	
 	}
 
+	public virtual void initRole(){
+	}
+
 	public void AddFoodTag(string tag){
 		FoodTags.Add(tag);
-		Debug.Log (FoodTags);
+		//Debug.Log (FoodTags);
 	}
 
 	public bool IsWithinDistance(Vector3 pos, float dist){
 		return (this.transform.position - pos).sqrMagnitude <= dist*dist;
 	}
 
-	public bool IsInSight(Vector3 pos){
-		return (this.transform.position - pos).sqrMagnitude <= sightDistance*sightDistance;
+	public bool IsInSight(GameObject obj){
+		return (this.transform.position - obj.transform.position).sqrMagnitude <= sightDistance*sightDistance;
 	}
 
-	public bool IsWithinReach(Vector3 pos){
-		return (this.transform.position - pos).sqrMagnitude <= reachDistance*reachDistance;
+	public bool IsWithinReach(GameObject obj){
+		return (this.transform.position - obj.transform.position).sqrMagnitude <= reachDistance*reachDistance;
 	}
 	
 	void OnDrawGizmos() {
