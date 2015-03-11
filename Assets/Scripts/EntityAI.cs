@@ -7,13 +7,6 @@ public class EntityAI : MonoBehaviour {
 	protected Movement movement;
 	protected Choice currentChoice;
 
-	public float sightDistance;
-
-	protected Vector3 target;
-	public GameObject targetObject;
-	protected bool hasTarget = false;
-	protected int taskTime = 0;
-
 	public enum States {
 		Searching,	//Searching for stuff
 		Seeking, 	//Seeking object
@@ -22,8 +15,15 @@ public class EntityAI : MonoBehaviour {
 		Fleeing,	//Fleeing creature 
 		Killing		//Fighting something
 	}	
-
 	protected States state;
+
+
+	public float sightDistance;
+
+	protected Vector3 target;
+	public GameObject targetObject;
+	protected bool hasTarget = false;
+	protected int taskTime = 0;
 	
 	public Choice CurrentChoice { get { return currentChoice; } }
 	protected Choice SetChoice<T>() where T : Choice{
@@ -39,7 +39,7 @@ public class EntityAI : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		this.movement = GetComponent<Movement>();
-		state = States.Searching;
+		//state = States.Searching;
 	}
 
 	public virtual void Update() {
@@ -50,7 +50,7 @@ public class EntityAI : MonoBehaviour {
 	}
 
 	public virtual void OnChoiceEnd(){
-		
+
 	}
 
 	protected bool IsWithinDistance(Vector3 pos, float dist){
@@ -58,27 +58,21 @@ public class EntityAI : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-		string file = "uglyassicon.png";
+		string icon = "uglyassicon.png";
 		switch(this.state){
-		case States.Searching:
-			file = "yellow_icon.png";
+		case States.Searching: icon = "blue_icon.png";
 			break;
-		case States.Seeking:
-			file = "turquise_icon.png";
+		case States.Seeking: icon = "green_icon.png";
 			break;
-		case States.Gathering:
-			file = "green_icon.png";
+		case States.Gathering: icon = "turquise_icon.png";
 			break;
-		case States.Returning:
-			file = "magenta_icon.png";
+		case States.Returning: icon = "magenta_icon.png";
 			break;
-		case States.Fleeing:
-			file = "white_icon.png";
+		case States.Fleeing: icon = "yellow_icon.png";
 			break;
-		case States.Killing:
-			file = "red_icon.png";
+		case States.Killing: icon = "red_icon.png";
 			break;
 		}
-		Gizmos.DrawIcon(transform.position + Vector3.up*5, file, false);
+		Gizmos.DrawIcon(transform.position + Vector3.up*10, icon, false);
 	}
 }

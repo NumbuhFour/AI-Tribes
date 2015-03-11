@@ -194,6 +194,7 @@ public class Movement : MonoBehaviour {
 
 				ray = this.transform.forward; //CCW
 				ray = Quaternion.AngleAxis(-angle,up)*ray;
+				
 				hit = Physics.Raycast(pos,ray,Mathf.Max(0.001f,distCurve.Evaluate(angle)*maxDist));
 				Debug.DrawRay(pos, ray*distCurve.Evaluate(angle)*maxDist,hit ? Color.red:Color.green);
 				if(hit) leftObs = Mathf.Max (weightCurve.Evaluate(angle), leftObs);

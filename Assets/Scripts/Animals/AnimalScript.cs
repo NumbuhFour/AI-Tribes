@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Animal : Entity {
+public class AnimalScript : Entity {
 
 	// Use this for initialization
 	public override void Start () {
