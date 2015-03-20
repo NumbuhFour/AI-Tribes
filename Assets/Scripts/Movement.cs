@@ -88,21 +88,29 @@ public class Movement : MonoBehaviour {
 		this.SwitchToSteering();
 		float angle = GetAngleTo(pos);
 		float direction = GetDirectionTo(pos);
-		if(angle < 170f){
+		if(Mathf.Abs(angle) < 170f){
 			float speed = Mathf.Min(angle/170f, 1); //Slowing as we get closer to face target
 			Turn (-direction,speed);
 		}
 		
 		if(angle > 90){
-			float dist = (this.transform.position - pos).magnitude;
-			if(dist < 60) {
+			//float dist = (this.transform.position - pos).magnitude;
+			//if(dist < 60) { Gotta keep running!
 				float invAngle = 180-angle;
 				float speed = Mathf.Min (1-(invAngle/150f),1);
 				GoForward (speed);
-			}else{
+			/*}else{
 				Stop ();
-			}
+			}*/
 		}
+
+		bool frontHit;
+		float vel = this.GetComponent<Rigidbody>().velocity.magnitude;
+		float obstruct = ThrowRays(32, rayDistCurve, rayWeightCurve, vel *2, out frontHit);
+		if(frontHit)
+			Turn (1, turnSpeed/vel*1.6f); //TODO scale turn speed by velocity
+		else Turn (Mathf.Sign(obstruct), Mathf.Abs (obstruct)*turnSpeed/vel*0.8f); //TODO scale turn speed by velocity
+
 	}
 
 	/// <summary>

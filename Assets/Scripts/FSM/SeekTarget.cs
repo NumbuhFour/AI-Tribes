@@ -16,7 +16,7 @@ namespace FSM {
 		}
 		
 		protected override void OnUpdate () {
-			if(target) move.Seek(target.transform);
+			if(target) move.PathTo(target.transform.position);
 		}
 	}
 
