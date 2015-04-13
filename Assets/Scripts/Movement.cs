@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		agent = this.GetComponent<NavMeshAgent>();
+//		Debug.Log("GOT MOVEMENT " + agent);
 	}
 	
 	// Update is called once per frame
@@ -145,6 +146,7 @@ public class Movement : MonoBehaviour {
 	}
 
 	public void SwitchToPathing(){
+//		Debug.Log("ADSNDAONSA " + agent + " " + this.gameObject);
 		agent.enabled = true;
 		rb.isKinematic = true;
 	}
