@@ -31,6 +31,30 @@ GameObject:
   - 65: {fileID: 6552540}
   - 114: {fileID: 11409720}
   - 111: {fileID: 11168524}
+  - 114: {fileID: 11427444}
+  - 114: {fileID: 11424520}
+  - 114: {fileID: 11408310}
+  - 114: {fileID: 11424068}
+  - 114: {fileID: 11473700}
+  - 114: {fileID: 11468670}
+  - 114: {fileID: 11424816}
+  - 114: {fileID: 11416078}
+  - 114: {fileID: 11467444}
+  - 114: {fileID: 11460166}
+  - 114: {fileID: 11440250}
+  - 114: {fileID: 11420450}
+  - 114: {fileID: 11438192}
+  - 114: {fileID: 11475672}
+  - 114: {fileID: 11446666}
+  - 114: {fileID: 11440092}
+  - 114: {fileID: 11440882}
+  - 114: {fileID: 11495432}
+  - 114: {fileID: 11477556}
+  - 114: {fileID: 11463438}
+  - 114: {fileID: 11424358}
+  - 114: {fileID: 11430534}
+  - 114: {fileID: 11494124}
+  - 114: {fileID: 11490314}
   m_Layer: 0
   m_Name: BT Prey
   m_TagString: Untagged
@@ -135,6 +159,23 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11408310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
 --- !u!114 &11409720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +227,363 @@ MonoBehaviour:
     _serializedGameObjects:
     - {fileID: 11400000, guid: f3fa147ea82d48a4780805109ad4d181, type: 2}
     _serializedCustomData: []
+--- !u!114 &11416078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11420450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11424068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11424358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11424520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11424816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11427444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11430534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11438192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11440092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11440250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11440882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11446666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11460166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11463438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11467444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11468670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11473700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11475672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11477556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11490314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
 --- !u!114 &11493794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +634,40 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &11494124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
+--- !u!114 &11495432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d044e4a7c80e498f8088a87bb6a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  FoodTags: []
+  hasFood: 0
+  sightDistance: 0
+  reachDistance: 0
+  targetObject: {fileID: 0}
 --- !u!195 &19505970
 NavMeshAgent:
   m_ObjectHideFlags: 1

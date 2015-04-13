@@ -11,12 +11,13 @@ GameObject:
   - 33: {fileID: 3329850}
   - 136: {fileID: 13629850}
   - 23: {fileID: 2329850}
+  - 114: {fileID: 11472650}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &429850
 Transform:
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.2999992, y: 3.70000005, z: -5.19999981}
+  m_LocalPosition: {x: -264.082642, y: 0, z: 194.782776}
   m_LocalScale: {x: 6.33171368, y: 6.33171368, z: 6.33171368}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,6 +62,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129850}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11472650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c925596b7d17574468e61f190aea8186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13629850
 CapsuleCollider:
   m_ObjectHideFlags: 1
