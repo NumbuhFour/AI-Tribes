@@ -32,11 +32,11 @@ public class Player : Tribesman {
 				this.movement.Turn(horiz);
 		}
 		
-		if(Input.GetMouseButtonDown(0)){
+		/*if(Input.GetMouseButtonDown(0)){
 			target = Camera.main.ScreenToWorldPoint( Input.mousePosition );
 			hasTarget = true;
 			isPathing = false;
-		}else if(Input.GetMouseButtonDown(1)){
+		}else*/ if(Input.GetMouseButtonDown(1)){
 			Vector3 go = Camera.main.ScreenToWorldPoint( Input.mousePosition );
 			movement.PathTo(go);
 			hasTarget = false;
