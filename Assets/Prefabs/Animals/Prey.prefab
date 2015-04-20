@@ -57,7 +57,6 @@ GameObject:
   - 114: {fileID: 11484358}
   - 114: {fileID: 11484018}
   - 114: {fileID: 11459320}
-  - 114: {fileID: 11413796}
   m_Layer: 0
   m_Name: Prey
   m_TagString: Untagged
@@ -191,17 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatorState: Eat Berries
   targetProperty: FoodFound
---- !u!114 &11413796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c925596b7d17574468e61f190aea8186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11428208
 MonoBehaviour:
   m_ObjectHideFlags: 1

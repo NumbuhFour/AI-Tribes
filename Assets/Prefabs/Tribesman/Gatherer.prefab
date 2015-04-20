@@ -34,7 +34,6 @@ GameObject:
   - 114: {fileID: 11452170}
   - 114: {fileID: 11488786}
   - 114: {fileID: 11443492}
-  - 114: {fileID: 11499334}
   m_Layer: 0
   m_Name: Gatherer
   m_TagString: Untagged
@@ -298,17 +297,6 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
---- !u!114 &11499334
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c925596b7d17574468e61f190aea8186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

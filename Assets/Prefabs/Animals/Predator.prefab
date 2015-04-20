@@ -52,7 +52,6 @@ GameObject:
   - 114: {fileID: 11453788}
   - 114: {fileID: 11499668}
   - 114: {fileID: 11460098}
-  - 114: {fileID: 11461148}
   m_Layer: 0
   m_Name: Predator
   m_TagString: Untagged
@@ -325,17 +324,6 @@ MonoBehaviour:
     - Attack
     - Flee
     values: 00000000010000000500000004000000
---- !u!114 &11461148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c925596b7d17574468e61f190aea8186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11478830
 MonoBehaviour:
   m_ObjectHideFlags: 1

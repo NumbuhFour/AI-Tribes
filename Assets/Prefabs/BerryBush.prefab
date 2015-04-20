@@ -13,7 +13,6 @@ GameObject:
   - 23: {fileID: 2388388}
   - 114: {fileID: 11472978}
   - 114: {fileID: 11456664}
-  - 114: {fileID: 11476522}
   m_Layer: 0
   m_Name: BerryBush
   m_TagString: Bush
@@ -169,17 +168,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee88d4df5430f8e4ebb7db3c61270b9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11476522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c925596b7d17574468e61f190aea8186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &13577004
