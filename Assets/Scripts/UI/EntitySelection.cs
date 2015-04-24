@@ -12,6 +12,11 @@ public class EntitySelection : MonoBehaviour {
 	public float distance = 80;
 
 	public Transform uiRect;
+	public GameObject radialMenu;
+
+	private List<GameObject> selected = new List<GameObject>();
+
+	public List<GameObject> Selected{ get { return selected; } }
 
 	public List<GameObject> VisibleGameObjects { 
 		get { 
@@ -37,6 +42,7 @@ public class EntitySelection : MonoBehaviour {
 		if(mouse && !mouseDown){
 			GoMouseDown();
 		}else if(!mouse && mouseDown){
+			this.radialMenu.GetComponent<Animator>().SetBool("open",false);
 			GoMouseUp();
 		}
 
@@ -65,6 +71,10 @@ public class EntitySelection : MonoBehaviour {
 		rectEnd.y = -30;
 		mouseDown = false;
 
+		foreach(GameObject go in this.selected){
+			DestroyImmediate(go.GetComponent<Light>());
+		}
+		this.selected.Clear();
 		foreach(GameObject go in this.VisibleGameObjects){
 			bool isHuman = false;
 			for(int i = 0; i < go.transform.childCount && !isHuman; i++){
@@ -77,8 +87,12 @@ public class EntitySelection : MonoBehaviour {
 				Light l = go.AddComponent<Light>();
 				l.intensity = 8;
 				l.range = 25;
-				Destroy(go);
+				this.selected.Add(go);
 			}
+		}
+		if(this.selected.Count > 0) {
+			this.radialMenu.GetComponent<RectTransform>().anchoredPosition = mousePos;
+			this.radialMenu.GetComponent<Animator>().SetBool("open",true);
 		}
 		uiRect.GetComponent<Image>().enabled = false;
 	}
@@ -100,7 +114,7 @@ public class EntitySelection : MonoBehaviour {
 	void DrawRect(Vector3 mouseStart, Vector3 mouseEnd){
 		uiRect.GetComponent<Image>().enabled = true;
 		((RectTransform)uiRect).anchoredPosition = mouseStart;
-		((RectTransform)uiRect).localScale = mouseEnd - mouseStart;
+		((RectTransform)uiRect).localScale = mouseEnd - mouseStart + new Vector3(0,0,1);
 	}
 
 	void DoRect(Vector3 rectStart, Vector3 rectEnd){
