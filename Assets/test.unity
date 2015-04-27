@@ -9650,6 +9650,7 @@ MonoBehaviour:
   distance: 160
   uiRect: {fileID: 1658615186}
   radialMenu: {fileID: 741142172}
+  selectionPrefab: {fileID: 154664, guid: 2cd4f5f9409a0e147ad3f871eb406064, type: 2}
 --- !u!1001 &415366882
 Prefab:
   m_ObjectHideFlags: 0

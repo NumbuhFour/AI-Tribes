@@ -13,6 +13,7 @@ public class EntitySelection : MonoBehaviour {
 
 	public Transform uiRect;
 	public GameObject radialMenu;
+	public GameObject selectionPrefab; //Visual selected notification
 
 	private List<GameObject> selected = new List<GameObject>();
 
@@ -71,8 +72,14 @@ public class EntitySelection : MonoBehaviour {
 		rectEnd.y = -30;
 		mouseDown = false;
 
-		foreach(GameObject go in this.selected){
-			DestroyImmediate(go.GetComponent<Light>());
+		foreach(GameObject go in this.selected){ //Remove the visual selection notification
+			for(int i = 0; i < go.transform.childCount; i++){
+				Transform t = go.transform.GetChild(i);
+				if(t.gameObject.name == this.selectionPrefab.name + "(Clone)"){
+					DestroyImmediate(t.gameObject);
+					break;
+				}
+			}
 		}
 		this.selected.Clear();
 		foreach(GameObject go in this.VisibleGameObjects){
@@ -84,9 +91,8 @@ public class EntitySelection : MonoBehaviour {
 
 			Vector3 pos = go.transform.position;
 			if(IsPointSelected(pos,rectStart,rectEnd)){
-				Light l = go.AddComponent<Light>();
-				l.intensity = 8;
-				l.range = 25;
+				GameObject selAdd = Instantiate(this.selectionPrefab); //Adding visual selection notification
+				selAdd.transform.SetParent(go.transform,false);
 				this.selected.Add(go);
 			}
 		}
