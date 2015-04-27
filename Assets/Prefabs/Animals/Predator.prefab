@@ -45,13 +45,14 @@ GameObject:
   - 114: {fileID: 11436042}
   - 54: {fileID: 5483038}
   - 65: {fileID: 6569366}
-  - 114: {fileID: 11431322}
-  - 114: {fileID: 11456918}
-  - 114: {fileID: 11439146}
-  - 114: {fileID: 11478830}
-  - 114: {fileID: 11453788}
-  - 114: {fileID: 11499668}
-  - 114: {fileID: 11460098}
+  - 114: {fileID: 11411438}
+  - 114: {fileID: 11451580}
+  - 114: {fileID: 11429746}
+  - 114: {fileID: 11443598}
+  - 114: {fileID: 11453350}
+  - 114: {fileID: 11473508}
+  - 114: {fileID: 11438706}
+  - 114: {fileID: 11476784}
   m_Layer: 0
   m_Name: Predator
   m_TagString: Untagged
@@ -191,7 +192,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180518}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e2c2663f3f411c3419105ef462a2b193, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 812115ecae41f8b4dbe8ce391ae7d530, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -200,7 +201,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11431322
+--- !u!114 &11411438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5317bc806106bd744a4a7ce899280fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorState: Chase
+--- !u!114 &11429746
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -211,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021f90fdbf952bf4697750b55d7a077f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatorState: Wander
-  targetTag: 
+  activatorState: Any
+  targetTag: Human
   targetParameter: TargetFound
   distance: 30
 --- !u!114 &11436042
@@ -227,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMult: 1
-  forwardSpeed: 20
+  forwardSpeed: 50
   turnSpeed: 7
   sidestepSpeed: 20
   rayDistCurve:
@@ -265,20 +278,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11439146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  health: 100
---- !u!114 &11453788
+--- !u!114 &11438706
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -295,18 +295,7 @@ MonoBehaviour:
   sightDistance: 0
   reachDistance: 0
   targetObject: {fileID: 0}
---- !u!114 &11456918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4702ab0999adc3479f9f685559d94c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11460098
+--- !u!114 &11443598
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -324,7 +313,7 @@ MonoBehaviour:
     - Attack
     - Flee
     values: 00000000010000000500000004000000
---- !u!114 &11478830
+--- !u!114 &11451580
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -332,14 +321,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 180518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64702f1444c5f494d867d6b01e0eb8c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0346466032e7de84a8585ce98bbff71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateAssignments:
-    keys:
-    - 
-    values: 00000000
---- !u!114 &11499668
+  activatorState: Any
+  targetParameter: TargetDistance
+--- !u!114 &11453350
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -347,10 +334,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 180518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5317bc806106bd744a4a7ce899280fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: c4702ab0999adc3479f9f685559d94c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatorState: Chase
+--- !u!114 &11473508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+--- !u!114 &11476784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216f6ae98924d884da1e983de1b7ae9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorState: Wander
 --- !u!195 &19577206
 NavMeshAgent:
   m_ObjectHideFlags: 1
