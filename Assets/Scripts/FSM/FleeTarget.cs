@@ -4,7 +4,7 @@ using System.Collections;
 namespace FSM {
 	[AddComponentMenu("Scripts/FSM/Flee Target")]
 	public class FleeTarget : FSMBehaviour {
-		
+
 		private Species species;
 		private Movement move;
 		// Use this for initialization

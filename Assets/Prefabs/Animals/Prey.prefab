@@ -57,9 +57,10 @@ GameObject:
   - 114: {fileID: 11484358}
   - 114: {fileID: 11484018}
   - 114: {fileID: 11459320}
+  - 114: {fileID: 11460436}
   m_Layer: 0
   m_Name: Prey
-  m_TagString: Untagged
+  m_TagString: Prey
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatorState: Any
   targetTag: Human
-  targetParameter: TargetFound
+  targetParameter: DangerFound
   distance: 30
 --- !u!114 &11433518
 MonoBehaviour:
@@ -275,6 +276,21 @@ MonoBehaviour:
   activatorState: Wander
   targetTag: Bush
   targetParameter: FoodFound
+  distance: 30
+--- !u!114 &11460436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021f90fdbf952bf4697750b55d7a077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorState: Wander
+  targetTag: Prey
+  targetParameter: MateFound
   distance: 30
 --- !u!114 &11468476
 MonoBehaviour:
@@ -360,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5317bc806106bd744a4a7ce899280fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatorState: Seek Berries
+  activatorState: Seek Berries,Seek Mate
 --- !u!114 &11484358
 MonoBehaviour:
   m_ObjectHideFlags: 1
