@@ -26,6 +26,7 @@ public class Species : MonoBehaviour {
 	protected Movement movement;
 
 	public bool hasFood = false;
+	public float food = 0;
 
 	public delegate bool Test();
 	public delegate int Action(GameObject target);
@@ -70,7 +71,11 @@ public class Species : MonoBehaviour {
 	public bool IsInSight(GameObject obj){
 		return (this.transform.position - obj.transform.position).sqrMagnitude <= sightDistance*sightDistance;
 	}
-	
+
+	public bool IsInSight(Vector3 pos){
+		return (this.transform.position - pos).sqrMagnitude <= sightDistance*sightDistance;
+	}
+
 	public bool IsWithinReach(GameObject obj){
 		return IsWithinReach(obj.transform.position);
 	}

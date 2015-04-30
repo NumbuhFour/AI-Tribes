@@ -30,7 +30,7 @@ public class Gatherer : Role {
 		}
 		Vector3 pos = this.transform.position;
 		foreach(GameObject b in food){
-			if(species.IsWithinDistance(b.transform.position, species.sightDistance)){
+			if(species.IsInSight(b)){
 				return b;
 			}
 		}
@@ -40,7 +40,7 @@ public class Gatherer : Role {
 	//goes after target, returns false if target out of range
 	private int SeekFood(GameObject target){
 
-		if(!species.IsInSight(target)){
+		if(!species.IsInSight(target.transform.position)){
 			return 0;
 		}
 		movement.Seek(target.transform);

@@ -274,9 +274,11 @@ MonoBehaviour:
   _state: 0
   FoodTags: []
   hasFood: 0
+  food: 0
   sightDistance: 50
   reachDistance: 10
   targetObject: {fileID: 0}
+  foodLimit: 1
   state: 0
 --- !u!114 &11493188
 MonoBehaviour:
