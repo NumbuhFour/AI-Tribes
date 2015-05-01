@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour {
 		if(angle > 5f){
 			float speed = Mathf.Min(angle/50f, 1);
 			Turn (direction,speed);
+			GoForward(0.01f);
 		}
 		
 		if(angle < 90){

@@ -2537,6 +2537,7 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &111790414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,6 +2552,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -8363,6 +8367,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &359548391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8377,6 +8382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -23096,6 +23104,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &1012945642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23110,6 +23119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -30711,6 +30723,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &1375537976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30725,6 +30738,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -32516,6 +32532,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &1441005016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32530,6 +32547,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -42084,6 +42104,7 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &1873774343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42098,6 +42119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 60
@@ -42573,6 +42597,7 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &1883130533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42587,6 +42612,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 60
@@ -47931,6 +47959,7 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!114 &2066789018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47945,6 +47974,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50

@@ -25,12 +25,17 @@ public class Species : MonoBehaviour {
 
 	protected Movement movement;
 
+	public float strength;
+	public float size;
+	public float health;
 	public bool hasFood = false;
 	public float food = 0;
 
 	public delegate bool Test();
+	public delegate void PerformAction();
 	public delegate int Action(GameObject target);
 	public Action SeekFood;
+	public Action Gather;
 
 	public delegate Vector3 MoveAction();
 	public MoveAction Search;
@@ -49,6 +54,7 @@ public class Species : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		movement = GetComponentInParent<Movement>();
+		target = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -57,6 +63,19 @@ public class Species : MonoBehaviour {
 	}
 
 	public virtual void initRole(){
+	}
+
+	public void Fight(Species other){
+		if (other.strength > strength){
+			other.Kill(this);
+		}
+		else{
+			Kill(other);
+		}
+	}
+
+	public virtual void Kill(Species other){
+
 	}
 
 	public void AddFoodTag(string tag){

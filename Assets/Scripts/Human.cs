@@ -75,7 +75,7 @@ public class Human : Species {
 	}
 
 	public GameObject CheckReturn(){
-		if (HasFood() > 0 || GetDistanceToVillage() > 200){
+		if (HasFood() > 0 || GetDistanceToVillage() > 500){
 			return this.gameObject;
 		}
 		return null;
@@ -118,7 +118,7 @@ public class Human : Species {
 				
 				break;
 			}
-			case States.Gathering: Gather(); break;
+			case States.Gathering: Gather(targetObject); break;
 			case States.Returning: Return(); break;
 		}
 		
@@ -128,26 +128,6 @@ public class Human : Species {
 	protected float GetDistanceToVillage(){
 		return (this.transform.position - GameObject.FindGameObjectWithTag("Village").transform.position).magnitude;
 	}
-
-	//stays in place until time is up, returns to village
-	protected void Gather(){
-		if (targetObject.tag != "Bush")
-			UpdateDecision();
-		else{
-			food += Time.deltaTime; //milliseconds
-			if(food > foodLimit){
-				targetObject.SendMessage("EatBerries");
-				hasFood = true;
-				hasTarget = false;
-				taskTime = 0;
-				UpdateDecision ();
-				//state = States.Returning;
-
-			}
-		}
-	}
-
-
 	//moves back to village
 	protected void Return(){
 		if(!hasTarget){
@@ -179,7 +159,9 @@ public class Human : Species {
 		}
 		return targetObject.transform.position;*/
 		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance){
-			Vector3 wanderTarget = transform.position + new Vector3(Mathf.Sin (transform.rotation.y) * Random.Range(5, 100), 0, Mathf.Cos (transform.rotation.y) * Random.Range(5, 100));
+			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			Vector3 wanderTarget = transform.position + new Vector3(dx, 0, dz);
 			return wanderTarget;
 		}
 		return target;
