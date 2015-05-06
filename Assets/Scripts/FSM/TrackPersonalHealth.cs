@@ -14,6 +14,7 @@ public class TrackPersonalHealth : MonoBehaviour {
 	}
 	
 	public void Update(){
-		anim.SetFloat("Health", props.Health/props.MaxHealth);
+		if (props.MaxHealth != 0)
+			anim.SetFloat("Health", props.Health/props.MaxHealth);
 	}
 }

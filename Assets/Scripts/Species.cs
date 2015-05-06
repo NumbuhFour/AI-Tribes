@@ -25,11 +25,18 @@ public class Species : MonoBehaviour {
 
 	protected Movement movement;
 
+	public int foodCost;
+	public float strength;
+	public float size;
+	public float health;
 	public bool hasFood = false;
+	public float food = 0;
 
 	public delegate bool Test();
+	public delegate void PerformAction();
 	public delegate int Action(GameObject target);
 	public Action SeekFood;
+	public Action Gather;
 
 	public delegate Vector3 MoveAction();
 	public MoveAction Search;
@@ -48,6 +55,7 @@ public class Species : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		movement = GetComponentInParent<Movement>();
+		target = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -56,6 +64,24 @@ public class Species : MonoBehaviour {
 	}
 
 	public virtual void initRole(){
+	}
+
+	public void Fight(Species other){
+		if (strength > other.strength){
+			Kill(other);
+		}
+		else{
+			Kill(this);
+		}
+	}
+
+	public virtual void Kill(Species other){
+		other.GetComponent<Species>().enabled = false;
+		other.GetComponent<Role>().enabled = false;
+		other.GetComponent<Movement>().enabled = false;
+		foreach(Transform obj in transform)
+			Object.Destroy(obj.gameObject);
+		other.gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
 	public void AddFoodTag(string tag){
@@ -70,7 +96,11 @@ public class Species : MonoBehaviour {
 	public bool IsInSight(GameObject obj){
 		return (this.transform.position - obj.transform.position).sqrMagnitude <= sightDistance*sightDistance;
 	}
-	
+
+	public bool IsInSight(Vector3 pos){
+		return (this.transform.position - pos).sqrMagnitude <= sightDistance*sightDistance;
+	}
+
 	public bool IsWithinReach(GameObject obj){
 		return IsWithinReach(obj.transform.position);
 	}

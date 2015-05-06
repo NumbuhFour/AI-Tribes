@@ -25,6 +25,7 @@ public class BerryBush : MonoBehaviour {
 	}
 	
 	public void EatBerries(){
+		GetComponent<Collider>().isTrigger = false;
 		this.tag = "Untagged";
 		eaten = true;
 		berry.enabled = false;

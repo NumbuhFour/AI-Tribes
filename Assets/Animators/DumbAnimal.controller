@@ -52,54 +52,6 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
---- !u!114 &11429436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7367b5c7bba8b42a22763a84900d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateName: Wander
---- !u!114 &11451096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7367b5c7bba8b42a22763a84900d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateName: Eat Berries
---- !u!114 &11483496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7367b5c7bba8b42a22763a84900d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateName: Flee
---- !u!114 &11492650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7367b5c7bba8b42a22763a84900d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateName: Seek Berries
 --- !u!114 &11493316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,7 +214,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 110117292}
   m_StateMachineBehaviours:
-  - {fileID: 11429436}
+  - {fileID: 0}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 0
@@ -281,7 +233,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 110182450}
   m_StateMachineBehaviours:
-  - {fileID: 11451096}
+  - {fileID: 0}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -300,7 +252,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 110147146}
   m_StateMachineBehaviours:
-  - {fileID: 11492650}
+  - {fileID: 0}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -320,7 +272,7 @@ AnimatorState:
   - {fileID: 110117694}
   - {fileID: 110157436}
   m_StateMachineBehaviours:
-  - {fileID: 11483496}
+  - {fileID: 0}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

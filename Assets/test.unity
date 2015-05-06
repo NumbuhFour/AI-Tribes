@@ -10071,7 +10071,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
+  food: 0
   sightDistance: 0
   reachDistance: 0
   targetObject: {fileID: 0}
@@ -20046,6 +20051,7 @@ GameObject:
   - 33: {fileID: 863373462}
   - 136: {fileID: 863373461}
   - 23: {fileID: 863373460}
+  - 114: {fileID: 863373464}
   m_Layer: 0
   m_Name: Village
   m_TagString: Village
@@ -20085,7 +20091,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 863373459}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -20109,6 +20115,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &863373464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863373459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77faf65274aa8c34682fd2649c048b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 300
+  food: 20
+  childFoodCost: 2
+  breedingTime: 25
+  elapsedTime: 25
+  totalElapsedTime: 0
+  iterationTime: 200
+  hunter: {fileID: 100004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
+  gatherer: {fileID: 100002, guid: 899234c4d78c10547815ff81d6392081, type: 2}
+  newObjectData: []
 --- !u!4 &865434437
 Transform:
   m_PrefabParentObject: {fileID: 429850, guid: ff1818dff736afa469ea8485064ff9e8, type: 2}

@@ -4,14 +4,19 @@ using System.Collections.Generic;
 
 public class Gatherer : Role {
 
+	public Human human;
+
 	// Use this for initialization
 	void Start () {
 		base.Start();
-		if (species != null){
-			species.SeekFood = SeekFood;
-			species.Search = Roam;
-			species.CheckForFood = CheckForBush;
-			species.initRole();
+		human = GetComponent<Human>();
+		if (human != null){
+			human.SeekFood = SeekFood;
+			human.Search = Roam;
+			human.CheckForFood = CheckForBush;
+			human.Gather = Gather;
+			human.initRole();
+			human.foodCost = 1;
 		}
 	}
 	
@@ -30,7 +35,7 @@ public class Gatherer : Role {
 		}
 		Vector3 pos = this.transform.position;
 		foreach(GameObject b in food){
-			if(species.IsWithinDistance(b.transform.position, species.sightDistance)){
+			if(species.IsInSight(b)){
 				return b;
 			}
 		}
@@ -40,7 +45,7 @@ public class Gatherer : Role {
 	//goes after target, returns false if target out of range
 	private int SeekFood(GameObject target){
 
-		if(!species.IsInSight(target)){
+		if(!species.IsInSight(target.transform.position)){
 			return 0;
 		}
 		movement.Seek(target.transform);
@@ -55,6 +60,22 @@ public class Gatherer : Role {
 		return transform.position + targetDir;
 	}
 
+	//stays in place until time is up, returns to village
+	protected int Gather(GameObject targetObject){
+		if (!FoodTags.Contains(targetObject.tag))
+			human.UpdateDecision();
+		else{
+			human.food += Time.deltaTime; //milliseconds
+			if(human.food > human.foodLimit){
+				targetObject.SendMessage("EatBerries");
+				human.hasFood = true;
+				human.UpdateDecision ();
+				//state = States.Returning;
+				
+			}
+		}
+		return 0;
+	}
 
 
 

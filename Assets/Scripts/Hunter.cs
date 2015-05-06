@@ -4,14 +4,19 @@ using System.Collections.Generic;
 
 public class Hunter : Role {
 
+	public Human human;
+
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
-		if (species != null){
-			species.SeekFood = SeekPrey;
-			species.Search = Roam;
-			species.CheckForFood = CheckForPrey;
-			species.initRole();
+		human = GetComponent<Human>();
+		if (human != null){
+			human.SeekFood = SeekPrey;
+			human.Search = Roam;
+			human.CheckForFood = CheckForPrey;
+			human.initRole();
+			human.Gather = Gather;
+			human.foodCost = 3;
 		}
 	}
 	
@@ -49,11 +54,24 @@ public class Hunter : Role {
 		}
 		Vector3 pos = this.transform.position;
 		foreach(GameObject p in prey){
-			if(species.IsWithinDistance(p.transform.position, species.sightDistance)){
+			if(species.IsInSight(p.transform.position)){
 				return p;
 			}
 		}
 		return null;
+	}
+
+	//stays in place until time is up, returns to village
+	protected int Gather(GameObject targetObject){
+		if (!FoodTags.Contains(targetObject.tag))
+			human.UpdateDecision();
+		else{
+			human.Fight(targetObject.GetComponent<Animal>());
+			human.food += Mathf.Max(targetObject.GetComponent<Animal>().size, human.foodLimit - human.food); //milliseconds
+			human.hasFood = true;
+			human.UpdateDecision ();
+		}
+		return 0;
 	}
 
 }

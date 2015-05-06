@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Human : Species {
 
 	public DecisionTree decTree;
+	public float foodLimit;
 
 	//will become decision tree
 	public enum States {
@@ -27,6 +28,7 @@ public class Human : Species {
 		if (CheckForFood != null){
 			decTree.Food = CheckForFood;
 		}
+
 	}
 
 	public override void initRole(){
@@ -38,9 +40,11 @@ public class Human : Species {
 	}
 
 	public void UpdateDecision(){
+		targetObject = null;
 		string result = decTree.Run();
 		switch (result){
 			case "Seek": 
+				targetObject = CheckForFood();
 				state = States.Seeking;
 				break;
 			case "Flee":
@@ -71,11 +75,9 @@ public class Human : Species {
 	}
 
 	public GameObject CheckReturn(){
-		if (GetDistanceToVillage() > 200){
+		if (HasFood() > 0 || GetDistanceToVillage() > GameObject.FindWithTag("Village").GetComponent<Village>().range){
 			return this.gameObject;
 		}
-		if (hasFood)
-			return this.gameObject;
 		return null;
 		
 	}
@@ -86,8 +88,10 @@ public class Human : Species {
 
 		switch(state){
 			case States.Searching: {
-				if (taskTime > 1000)
+				GameObject check = CheckForFood();
+				if (check != null && IsInSight(check)){
 					UpdateDecision();
+				}
 				else {
 					target = Wander();	
 					movement.Seek (target);
@@ -98,16 +102,23 @@ public class Human : Species {
 				if (targetObject == null)
 					targetObject = CheckForFood();
 				int result = SeekFood(targetObject);
-				if (result == 2)
-					state = States.Gathering;
+				if (result == 2){
+					if (FoodTags.Contains(targetObject.tag))
+						state = States.Gathering;
+					else
+						UpdateDecision();
+				}
 				else if (result == 0)
 					UpdateDecision();
-				else
+				else{
+					if (FoodTags.Contains(targetObject.tag))
+						targetObject.GetComponent<Collider>().isTrigger = true;
 					movement.Seek(targetObject.transform);
+				}
 				
 				break;
 			}
-			case States.Gathering: Gather(); break;
+			case States.Gathering: Gather(targetObject); break;
 			case States.Returning: Return(); break;
 		}
 		
@@ -117,21 +128,6 @@ public class Human : Species {
 	protected float GetDistanceToVillage(){
 		return (this.transform.position - GameObject.FindGameObjectWithTag("Village").transform.position).magnitude;
 	}
-
-	//stays in place until time is up, returns to village
-	protected void Gather(){
-		taskTime += (int)(Time.deltaTime*1000); //milliseconds
-		if(taskTime > 6000){
-			hasFood = true;
-			hasTarget = false;
-			taskTime = 0;
-			UpdateDecision ();
-			//state = States.Returning;
-
-		}
-	}
-
-
 	//moves back to village
 	protected void Return(){
 		if(!hasTarget){
@@ -143,9 +139,8 @@ public class Human : Species {
 		}
 		
 		movement.Seek(target);
-		if(IsWithinDistance(target, 10f)){
+		if(IsWithinReach(target)){
 			hasFood = false;
-			//state = States.Searching;
 			hasTarget = false;
 			taskTime = 0;
 			UpdateDecision();
@@ -155,14 +150,25 @@ public class Human : Species {
 	//follows path until target found
 	public Vector3 Wander(){
 		taskTime += (int)(Time.deltaTime * 1000);
-		if(targetObject == null || (transform.position - target).sqrMagnitude < 10){ //Need to make a new wander target
+		/*if(targetObject == null || (transform.position - targetObject.transform.position).sqrMagnitude < 15){ //Need to make a new wander target
 			if (targetObject != null && targetObject.GetComponent<PathNode> () != null)
 				targetObject = targetObject.GetComponent<PathNode>().Last.gameObject;
 			else
 				targetObject = GameObject.FindWithTag ("Path").GetComponent<Path>().getNearestNode(transform.position).gameObject;
 			return targetObject.transform.position;
 		}
-		return targetObject.transform.position;
+		return targetObject.transform.position;*/
+		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance){
+			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			Vector3 wanderTarget = transform.position + new Vector3(dx, 0, dz);
+			return wanderTarget;
+		}
+		return target;
 		
+	}
+
+	public int HasFood(){
+		return food >= foodLimit ? 1 : 0;
 	}
 }
