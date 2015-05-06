@@ -75,7 +75,7 @@ public class Human : Species {
 	}
 
 	public GameObject CheckReturn(){
-		if (HasFood() > 0 || GetDistanceToVillage() > 500){
+		if (HasFood() > 0 || GetDistanceToVillage() > GameObject.FindWithTag("Village").GetComponent<Village>().range){
 			return this.gameObject;
 		}
 		return null;

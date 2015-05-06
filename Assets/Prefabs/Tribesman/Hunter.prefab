@@ -48,7 +48,6 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11424540}
   - 114: {fileID: 11493188}
-  - 114: {fileID: 11408314}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -226,40 +225,6 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11408314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dataSerializer:
-    _serializedData: <component version="1.2" type="RAIN.Entities.EntityRig"><fields><field
-      value="OnWhenSelected" type="RAIN.Core.VisualModeEnum" id="_visualMode" /><field
-      value="True" type="System.Boolean" id="_useUnityMessages" /><field type="RAIN.Entities.Entity"
-      reference="0" id="_entity" /></fields><references><reference type="RAIN.Entities.Entity"
-      refcount="1" id="0"><field value="" type="System.String" id="_entityName" /><field
-      value="True" type="System.Boolean" id="_isActive" /><field type="UnityEngine.GameObject"
-      id="_form" gameobject="1" /><field type="System.Collections.Generic.List" id="_aspects"
-      elementtype="RAIN.Entities.Aspects.RAINAspect"><field type="RAIN.Entities.Aspects.VisualAspect"
-      reference="1" id="element0" /></field></reference><reference type="RAIN.Entities.Aspects.VisualAspect"
-      refcount="1" id="1"><field value="True" type="System.Boolean" id="_showVisual"
-      /><field value="Human" type="System.String" id="_aspectName" /><field value="True"
-      type="System.Boolean" id="_isActive" /><field value="0,0.6,0.6,1" type="UnityEngine.Color"
-      id="_aspectColor" /><field value="-0.5" type="System.Single" id="_outlineColorOffset"
-      /><field value="0.4" type="System.Single" id="_selectionColorOffset" /><field
-      value="1.39" type="System.Single" id="_visualSize" /><field type="UnityEngine.Transform"
-      id="_mountPoint" gameobject="0" /><field value="0,0,0" type="UnityEngine.Vector3"
-      id="_positionOffset" /><field value="0,0,0" type="UnityEngine.Vector3" id="_angleOffset"
-      /></reference></references></component>
-    _serializedGameObjects:
-    - {fileID: 400004}
-    - {fileID: 100004}
-    _serializedCustomData: []
 --- !u!114 &11424540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,6 +238,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
+  strength: 0
+  size: 0
+  health: 0
   hasFood: 0
   food: 0
   sightDistance: 50
@@ -294,6 +263,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  human: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

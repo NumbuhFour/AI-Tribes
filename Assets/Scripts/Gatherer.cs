@@ -16,6 +16,7 @@ public class Gatherer : Role {
 			human.CheckForFood = CheckForBush;
 			human.Gather = Gather;
 			human.initRole();
+			human.foodCost = 1;
 		}
 	}
 	

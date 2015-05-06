@@ -2513,8 +2513,7 @@ GameObject:
 --- !u!114 &111790412
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11443492, guid: 899234c4d78c10547815ff81d6392081,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 111790411}
   m_Enabled: 1
@@ -2552,6 +2551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -8343,8 +8343,7 @@ GameObject:
 --- !u!114 &359548389
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11408314, guid: 31674d1b389d3de4d826e61eb928c090,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359548388}
   m_Enabled: 1
@@ -8382,6 +8381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -19987,12 +19987,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77faf65274aa8c34682fd2649c048b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 200
   food: 5
   childFoodCost: 1
-  breedingTime: 50
+  breedingTime: 20
   elapsedTime: 50
+  totalElapsedTime: 0
+  iterationTime: 200
   hunter: {fileID: 100004, guid: 31674d1b389d3de4d826e61eb928c090, type: 2}
   gatherer: {fileID: 100002, guid: 899234c4d78c10547815ff81d6392081, type: 2}
+  newObjectData: []
 --- !u!54 &863373465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23080,8 +23084,7 @@ GameObject:
 --- !u!114 &1012945640
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11408314, guid: 31674d1b389d3de4d826e61eb928c090,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1012945639}
   m_Enabled: 1
@@ -23119,6 +23122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -30699,8 +30703,7 @@ GameObject:
 --- !u!114 &1375537974
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11408314, guid: 31674d1b389d3de4d826e61eb928c090,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1375537973}
   m_Enabled: 1
@@ -30738,6 +30741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -32508,8 +32512,7 @@ GameObject:
 --- !u!114 &1441005014
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11408314, guid: 31674d1b389d3de4d826e61eb928c090,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1441005013}
   m_Enabled: 1
@@ -32547,6 +32550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -42080,8 +42084,7 @@ GameObject:
 --- !u!114 &1873774341
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11443492, guid: 899234c4d78c10547815ff81d6392081,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1873774340}
   m_Enabled: 1
@@ -42119,6 +42122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -42573,8 +42577,7 @@ GameObject:
 --- !u!114 &1883130531
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11443492, guid: 899234c4d78c10547815ff81d6392081,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1883130530}
   m_Enabled: 1
@@ -42612,6 +42615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0
@@ -47935,8 +47939,7 @@ GameObject:
 --- !u!114 &2066789016
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11443492, guid: 899234c4d78c10547815ff81d6392081,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066789015}
   m_Enabled: 1
@@ -47974,6 +47977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  foodCost: 0
   strength: 0
   size: 0
   health: 0

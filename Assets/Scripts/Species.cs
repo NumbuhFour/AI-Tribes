@@ -25,6 +25,7 @@ public class Species : MonoBehaviour {
 
 	protected Movement movement;
 
+	public int foodCost;
 	public float strength;
 	public float size;
 	public float health;
@@ -66,16 +67,21 @@ public class Species : MonoBehaviour {
 	}
 
 	public void Fight(Species other){
-		if (other.strength > strength){
-			other.Kill(this);
+		if (strength > other.strength){
+			Kill(other);
 		}
 		else{
-			Kill(other);
+			Kill(this);
 		}
 	}
 
 	public virtual void Kill(Species other){
-
+		other.GetComponent<Species>().enabled = false;
+		other.GetComponent<Role>().enabled = false;
+		other.GetComponent<Movement>().enabled = false;
+		foreach(Transform obj in transform)
+			Object.Destroy(obj.gameObject);
+		other.gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
 	public void AddFoodTag(string tag){

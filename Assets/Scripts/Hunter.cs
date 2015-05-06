@@ -16,6 +16,7 @@ public class Hunter : Role {
 			human.CheckForFood = CheckForPrey;
 			human.initRole();
 			human.Gather = Gather;
+			human.foodCost = 3;
 		}
 	}
 	
@@ -65,19 +66,10 @@ public class Hunter : Role {
 		if (!FoodTags.Contains(targetObject.tag))
 			human.UpdateDecision();
 		else{
-			if (targetObject.GetComponent<Animal>().health > 0){
-				human.Fight(targetObject.GetComponent<Animal>());
-			}
-			else{
-				human.food += Time.deltaTime; //milliseconds
-				if(human.food > human.foodLimit){
-					targetObject.SendMessage("Eat");
-					human.hasFood = true;
-					human.UpdateDecision ();
-					//state = States.Returning;
-					
-				}
-			}
+			human.Fight(targetObject.GetComponent<Animal>());
+			human.food += Mathf.Max(targetObject.GetComponent<Animal>().size, human.foodLimit - human.food); //milliseconds
+			human.hasFood = true;
+			human.UpdateDecision ();
 		}
 		return 0;
 	}
