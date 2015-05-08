@@ -7,13 +7,14 @@ public class Role : MonoBehaviour {
 	public List<string> FoodTags;
 
 	public Species species;
-
+	public PropertyTracker prop;
 	protected Movement movement;
 
 	// Use this for initialization
 	public virtual void Start () {
 		movement = GetComponentInParent<Movement>();
 		species = GetComponentInParent<Species>();
+		prop = GetComponent<PropertyTracker>();
 		if (species != null){
 			if (FoodTags != null){
 				foreach (string tag in FoodTags)

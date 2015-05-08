@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 public class Human : Species {
 
 	public DecisionTree decTree;
-	public float foodLimit;
 
 	//will become decision tree
 	public enum States {
@@ -64,9 +65,16 @@ public class Human : Species {
 	//returns false if predators in the area
 	public GameObject CheckForPredators(){
 
-		GameObject[] predators = GameObject.FindGameObjectsWithTag("Animal");
-		Vector3 pos = this.transform.position;
-		foreach(GameObject b in predators){
+		GameObject[] animals = GameObject.FindGameObjectsWithTag("Animal");
+		GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
+		List<GameObject> threats = new List<GameObject>();
+		foreach(GameObject a in animals){
+			foreach(GameObject b in predators)
+			if (b.transform.parent == a.transform.parent)
+				threats.Add(a);
+		}
+
+		foreach(GameObject b in threats){
 			if(IsInSight(b.transform.parent.gameObject)){
 				return b.transform.parent.gameObject;
 			}
@@ -85,7 +93,7 @@ public class Human : Species {
 	// Update is called once per frame
 	public override void Update () {
 
-
+		base.Update();
 		switch(state){
 			case States.Searching: {
 				GameObject check = CheckForFood();
@@ -132,8 +140,8 @@ public class Human : Species {
 	protected void Return(){
 		if(!hasTarget){
 			Vector3 targetPos = GameObject.FindGameObjectWithTag("Village").transform.position;
-			targetPos.x += Random.Range(-20,20);
-			targetPos.z += Random.Range(-20,20);
+			targetPos.x += UnityEngine.Random.Range(-20,20);
+			targetPos.z += UnityEngine.Random.Range(-20,20);
 			target = targetPos;
 			hasTarget = true;
 		}
@@ -159,8 +167,8 @@ public class Human : Species {
 		}
 		return targetObject.transform.position;*/
 		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance){
-			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
-			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
+			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
 			Vector3 wanderTarget = transform.position + new Vector3(dx, 0, dz);
 			return wanderTarget;
 		}
@@ -169,6 +177,8 @@ public class Human : Species {
 	}
 
 	public int HasFood(){
-		return food >= foodLimit ? 1 : 0;
+		float food = Convert.ToSingle(prop["food"]);
+		float foodLimit = Convert.ToSingle(prop["foodLimit"]);
+		return food > foodLimit ? 1 : 0;
 	}
 }

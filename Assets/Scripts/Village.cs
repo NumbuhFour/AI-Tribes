@@ -55,7 +55,7 @@ public class Village : MonoBehaviour {
 			GameObject obj = (GameObject)Instantiate(type ? hunter : gatherer, transform.position, Quaternion.AngleAxis(rotation, Vector3.up));
 
 			obj.GetComponent<Species>().strength = strength;
-			obj.GetComponent<Movement>().speedMult = speed;
+			obj.GetComponent<Movement>().speedMult = speed/3;
 
 			Data d = new Data();
 			d.hunter = type;

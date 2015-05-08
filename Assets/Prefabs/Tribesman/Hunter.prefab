@@ -48,6 +48,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11424540}
   - 114: {fileID: 11493188}
+  - 114: {fileID: 11458572}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -266,17 +267,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  prop: {fileID: 0}
+  foodLimit: 1
   foodCost: 0
   strength: 0
   size: 0
+  attackSpeed: 0
   health: 0
+  attackTimer: 0
   hasFood: 0
   food: 0
   sightDistance: 50
   reachDistance: 10
   targetObject: {fileID: 0}
-  foodLimit: 1
   state: 0
+--- !u!114 &11458572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
 --- !u!114 &11493188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +308,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  prop: {fileID: 0}
   human: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:

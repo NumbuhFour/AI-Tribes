@@ -65,9 +65,11 @@ public class Hunter : Role {
 	protected int Gather(GameObject targetObject){
 		if (!FoodTags.Contains(targetObject.tag))
 			human.UpdateDecision();
-		else{
-			human.Fight(targetObject.GetComponent<Animal>());
-			human.food += Mathf.Max(targetObject.GetComponent<Animal>().size, human.foodLimit - human.food); //milliseconds
+		else if (targetObject.GetComponent<Animal>() != null){
+			human.Attack(targetObject.GetComponent<Animal>());
+		}
+		else if (targetObject.tag == "AnimalMeat"){
+			prop["food"] = (float)prop["food"] + Mathf.Max((int)targetObject.GetComponent<PropertyTracker>()["size"], (float)prop["foodLimit"] - (float)prop["food"]); //milliseconds
 			human.hasFood = true;
 			human.UpdateDecision ();
 		}
