@@ -8,12 +8,13 @@ namespace FSM {
 	
 		public string targetTag;
 		public string targetParameter = "TargetFound";
-		public float distance;
+		private float distance;
 		
 		private Animator anim;
 		// Use this for initialization
 		protected override void OnBegin () {
 			anim = this.GetComponent<Animator>();
+			distance = this.GetComponent<Species>().sightDistance;
 		}
 		
 		protected override void OnUpdate () {
@@ -23,6 +24,7 @@ namespace FSM {
 			Vector3 cen = this.transform.position;
 			foreach(GameObject go in matches){
 				if(!go.activeSelf) continue; //Destroyed
+				if(go == this.gameObject) continue; //Me!
 				
 				Vector3 pos = go.transform.position;
 				pos -= cen;

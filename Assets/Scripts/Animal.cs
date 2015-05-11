@@ -7,7 +7,6 @@ public class Animal : Species {
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
-		strength = 2;
 	}
 	
 	// Update is called once per frame
