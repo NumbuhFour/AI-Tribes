@@ -104,7 +104,7 @@ public class Human : Species {
 				}
 				else {
 					target = Wander();	
-					movement.Seek (target);
+					movement.PathTo (target);
 				}
 				break;
 			}
@@ -125,7 +125,7 @@ public class Human : Species {
 				else{
 					if (FoodTags.Contains(targetObject.tag))
 						targetObject.GetComponent<Collider>().isTrigger = true;
-					movement.Seek(targetObject.transform);
+					movement.PathTo(targetObject.transform.position);
 				}
 				
 				break;
@@ -156,7 +156,7 @@ public class Human : Species {
 			hasTarget = true;
 		}
 		
-		movement.Seek(target);
+		movement.PathTo(target);
 		if(IsWithinReach(target)){
 			hasFood = false;
 			hasTarget = false;

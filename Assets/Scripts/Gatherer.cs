@@ -49,7 +49,7 @@ public class Gatherer : Role {
 		if(!species.IsInSight(target.transform.position)){
 			return 0;
 		}
-		movement.Seek(target.transform);
+		movement.PathTo(target.transform.position);
 		target.GetComponent<Collider>().isTrigger = true;
 		if (species.IsWithinReach(target))
 			return 2;

@@ -32,7 +32,7 @@ public class Hunter : Role {
 		if(!species.IsInSight(target)){
 			return 0;
 		}
-		movement.Seek(target.transform);
+		movement.PathTo(target.transform.position);
 		if (species.IsWithinReach(target))
 			return 2;
 		return 1;
@@ -91,6 +91,7 @@ public class Hunter : Role {
 			return 0;
 		}
 		bool attacked = false;
+		movement.PathTo(targetObject.transform.position);
 		foreach (Transform t in targetObject.transform) {
 			if (FoodTags.Contains(t.tag)){
 				human.Attack(targetObject.GetComponent<Animal>());
