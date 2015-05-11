@@ -15,6 +15,7 @@ public class Gatherer : Role {
 			human.Search = Roam;
 			human.CheckForFood = CheckForBush;
 			human.Gather = Gather;
+			human.EvaluateThreat = EvaluateThreat;
 			human.initRole();
 			human.foodCost = 1;
 		}
@@ -55,6 +56,20 @@ public class Gatherer : Role {
 		return 1;
 	}
 
+	/// <summary>
+	/// Evaluates gameobject, 0 for nothing, 1 for flee, 2 for attack
+	/// </summary>
+	/// <returns>The threat.</returns>
+	/// <param name="obj">Object.</param>
+	public int EvaluateThreat(GameObject obj){
+		Species spec = obj.GetComponent<Species>();
+		if (spec != null && spec is Animal){
+			if (spec.FoodTags.Contains("Human"))
+				return 1;
+		}
+		return 0;
+	}
+
 	//roams randomly
 	public Vector3 Roam(){
 		Vector3 targetDir = Quaternion.AngleAxis(Random.Range(-45,45), this.transform.up)*this.transform.forward * Random.Range(70,200);
@@ -70,9 +85,7 @@ public class Gatherer : Role {
 			if(human.food > human.foodLimit){
 				targetObject.SendMessage("EatBerries");
 				human.hasFood = true;
-				human.UpdateDecision ();
-				//state = States.Returning;
-				
+				human.UpdateDecision ();				
 			}
 		}
 		return 0;

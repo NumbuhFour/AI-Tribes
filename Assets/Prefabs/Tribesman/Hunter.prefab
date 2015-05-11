@@ -272,7 +272,7 @@ MonoBehaviour:
   foodCost: 0
   strength: 0
   size: 0
-  attackSpeed: 0
+  attackSpeed: .5
   health: 0
   attackTimer: 0
   hasFood: 0

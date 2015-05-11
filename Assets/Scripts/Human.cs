@@ -7,6 +7,8 @@ using System;
 public class Human : Species {
 
 	public DecisionTree decTree;
+	public delegate int Check(GameObject obj);
+	public Check EvaluateThreat;
 
 	//will become decision tree
 	public enum States {
@@ -70,7 +72,7 @@ public class Human : Species {
 		List<GameObject> threats = new List<GameObject>();
 		foreach(GameObject a in animals){
 			foreach(GameObject b in predators)
-			if (b.transform.parent == a.transform.parent)
+			if (b.transform.parent == a.transform.parent && EvaluateThreat(a.transform.parent.gameObject) == 1)
 				threats.Add(a);
 		}
 
@@ -110,10 +112,12 @@ public class Human : Species {
 				if (targetObject == null)
 					targetObject = CheckForFood();
 				int result = SeekFood(targetObject);
-				if (result == 2){
-					if (FoodTags.Contains(targetObject.tag))
-						state = States.Gathering;
-					else
+				if (result == 2){ 
+					foreach (Transform t in targetObject.transform) {
+						if (FoodTags.Contains(t.tag))
+							state = States.Gathering;
+					}
+					if (state != States.Gathering)
 						UpdateDecision();
 				}
 				else if (result == 0)
@@ -126,7 +130,13 @@ public class Human : Species {
 				
 				break;
 			}
-			case States.Gathering: Gather(targetObject); break;
+			case States.Gathering: {
+				if (targetObject != null)
+					Gather(targetObject); 
+				else
+					UpdateDecision();
+				break;
+			}
 			case States.Returning: Return(); break;
 		}
 		
