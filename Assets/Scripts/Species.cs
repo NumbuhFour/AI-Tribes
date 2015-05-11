@@ -82,18 +82,19 @@ public class Species : MonoBehaviour {
 
 	public void Attack(Species other){
 		if (attackTimer <= 0){
-			other.prop.Health -= (int)Convert.ToSingle(prop["strength"]);
+			int damage = (int)Convert.ToSingle(prop["strength"]);
+			other.prop.Health -= damage;
 			attackTimer = attackSpeed;
 		}
 	}
 
 	public virtual void Die(){
-		GetComponent<Species>().enabled = false;
+		/*GetComponent<Species>().enabled = false;
 		GetComponent<Role>().enabled = false;
 		GetComponent<Movement>().enabled = false;
 		foreach(Transform obj in transform)
 			GameObject.Destroy(obj.gameObject);
-		tag = this is Human ? "HumanMeat" : "AnimalMeat";
+		tag = this is Human ? "HumanMeat" : "AnimalMeat";*/
 	}
 
 	public void AddFoodTag(string tag){

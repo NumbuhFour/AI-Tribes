@@ -17,6 +17,7 @@ TagManager:
   - Entity
   - AnimalMeat
   - HumanMeat
+  - Gatherer
   layers:
   - Default
   - TransparentFX

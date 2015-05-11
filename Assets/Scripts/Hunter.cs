@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Hunter : Role {
 
@@ -40,7 +41,7 @@ public class Hunter : Role {
 
 	//roams at random
 	public Vector3 Roam(){
-		Vector3 targetDir = Quaternion.AngleAxis(Random.Range(-45,45), this.transform.up)*this.transform.forward * Random.Range(70,200);
+		Vector3 targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-45,45), this.transform.up)*this.transform.forward * UnityEngine.Random.Range(70,200);
 		return transform.position + targetDir;
 	}
 
@@ -84,10 +85,11 @@ public class Hunter : Role {
 			return 0;
 		}
 		if (targetObject.tag == "AnimalMeat"){
-			prop["food"] = (float)prop["food"] + Mathf.Max((int)targetObject.GetComponent<PropertyTracker>()["size"], (float)prop["foodLimit"] - (float)prop["food"]); //milliseconds
+			prop["food"] = Mathf.Max(Convert.ToSingle(prop["foodLimit"]), Convert.ToSingle(targetObject.GetComponent<PropertyTracker>()["size"]) + Convert.ToSingle(prop["food"])); //milliseconds
 			human.hasFood = true;
 			human.targetObject = null;
 			human.UpdateDecision ();
+			Debug.Log (this + "'s food is now: " + prop["food"]);
 			return 0;
 		}
 		bool attacked = false;

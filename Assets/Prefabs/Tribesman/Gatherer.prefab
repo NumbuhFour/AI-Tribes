@@ -36,7 +36,7 @@ GameObject:
   - 114: {fileID: 11422796}
   m_Layer: 0
   m_Name: Gatherer
-  m_TagString: Untagged
+  m_TagString: Gatherer
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +295,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100002}
   m_Enabled: 0
   m_Radius: 1.09896398
-  m_Speed: 20
+  m_Speed: 15
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
