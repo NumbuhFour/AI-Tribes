@@ -35,13 +35,13 @@ namespace FSM {
             if(delay <= 0){
                 GameObject target = species.targetObject;
                 PropertyTracker prop = target.GetComponent<PropertyTracker>();
-                int my = Random.range(0,myProp['strength']);
-                int opp = Random.range(0,prop['strength']);
+                int my = Random.Range(0,(int)myProp["strength"]);
+				int opp = Random.Range(0,(int)prop["strength"]);
                 
                 if(my > opp){
-                    prop['health'] -= my['strength'];
+					prop["health"] = (int)prop["health"] - (int)myProp["strength"];
                 }
-                delay = myProp['attackSpeed'];
+                delay = (float)myProp["attackSpeed"];
 
             }else {
                 delay -= Time.deltaTime;

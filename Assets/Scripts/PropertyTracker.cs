@@ -7,8 +7,8 @@ public class PropertyTracker : MonoBehaviour {
 	private Dictionary<string, object> data = new Dictionary<string, object>();
 	
     void Start(){
-        if(this['strength'] == null) this['strength'] = 0;
-        if(this['attackSpeed'] == null) this['attackSpeed'] = 1000; //Milliseconds
+        if(this["strength"] == null) this["strength"] = 0;
+        if(this["attackSpeed"] == null) this["attackSpeed"] = 1000; //Milliseconds
     }
     
 	[SerializeField]
@@ -29,12 +29,12 @@ public class PropertyTracker : MonoBehaviour {
 			health = value;
 			if(health <= 0) {
 				this.transform.parent.BroadcastMessage("ObjectDeath", this, SendMessageOptions.DontRequireReceiver);
-                other.GetComponent<Species>().enabled = false;
-                other.GetComponent<Role>().enabled = false;
-                other.GetComponent<Movement>().enabled = false;
+                GetComponent<Species>().enabled = false;
+                GetComponent<Role>().enabled = false;
+                GetComponent<Movement>().enabled = false;
                 foreach(Transform obj in transform)
                     Object.Destroy(obj.gameObject);
-                other.gameObject.GetComponent<Renderer>().enabled = false;
+                gameObject.GetComponent<Renderer>().enabled = false;
 			}
 		}
 	}
