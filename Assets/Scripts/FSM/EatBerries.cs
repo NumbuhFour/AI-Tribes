@@ -12,7 +12,10 @@ namespace FSM {
 			if(target != null){
 				target.SendMessage("EatBerries", SendMessageOptions.RequireReceiver);
 				this.GetComponent<Species>().targetObject = null;
-				this.GetComponent<Animator>().SetBool(targetProperty,false);
+				Animator anim = this.GetComponent<Animator>();
+				anim.SetBool(targetProperty,false);
+				anim.SetInteger("Age",anim.GetInteger("Age")+10000); 
+				this.GetComponent<PropertyTracker>().Health += 20;
 			}
 		}
 	}

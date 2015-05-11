@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 namespace FSM {
 	[AddComponentMenu("Scripts/FSM/Attack")]
 	public class Attack : FSMBehaviour {
