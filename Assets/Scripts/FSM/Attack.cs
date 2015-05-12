@@ -34,6 +34,7 @@ namespace FSM {
             if(delay <= 0){
                 GameObject target = species.targetObject;
                 PropertyTracker prop = target.GetComponent<PropertyTracker>();
+                Debug.Log("I've targeted a fucking " + target);
                 int my = Random.Range(0,(int)myProp["strength"]);
 				int opp = Random.Range(0,(int)prop["strength"]);
                 

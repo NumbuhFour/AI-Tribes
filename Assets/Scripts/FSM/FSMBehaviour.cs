@@ -52,7 +52,7 @@ namespace FSM {
 		}
 		
 		private void OnFStateEnter(string stateName){
-			if(IsActivator(stateName)) {
+			if(IsActivator(stateName) && !running) {
 				running = true;
 				OnBegin();
 			}
@@ -63,7 +63,7 @@ namespace FSM {
 		}
 		
 		private void OnFStateExit(string stateName){
-			if(IsActivator(stateName)) {
+			if(IsActivator(stateName) && activatorState.Trim().ToLower() != "any") {
 				running = false;
 				OnEnd();
 			}

@@ -37,6 +37,13 @@ namespace FSM {
 			
 			if(find != null && minDist <= distance*distance){
 				anim.SetBool(targetParameter,true);
+				
+				Component[] components = find.GetComponents<Component>();
+				while(components.Length == 1 && find.transform.parent != null){
+					find = find.transform.parent.gameObject;
+					components = find.GetComponents<Component>();
+				}
+				
 				GetComponent<Species>().targetObject = find;
 			}
 		}

@@ -10,7 +10,7 @@ namespace FSM {
 		
 		protected override void OnEnd(){
 			GameObject target = this.GetComponent<Species>().targetObject;
-			if(target != null){
+			if(target != null && target.GetComponent<Mate>() != null){
 				Mate m = target.GetComponent<Mate>();
 				if(m.GetComponent<Animator>().GetInteger(mateTimeProperty) > 0){
 					//Mate not suitable.
