@@ -12,6 +12,7 @@ public class Decay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		elapsedTime += Time.deltaTime;
 		if (elapsedTime > 10){
 			Object.Destroy(this.gameObject);
 		}

@@ -11,6 +11,7 @@ public class Animal : Species {
 	
 	// Update is called once per frame
 	public override void Update () {
+		base.Update();
 		/*switch(state){
 			case States.Searching: {
 				GameObject obj = CheckForFood();

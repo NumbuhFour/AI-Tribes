@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Hunter : Role {
 
@@ -14,9 +15,10 @@ public class Hunter : Role {
 			human.SeekFood = SeekPrey;
 			human.Search = Roam;
 			human.CheckForFood = CheckForPrey;
-			human.initRole();
 			human.Gather = Gather;
+			human.EvaluateThreat = EvaluateThreat;
 			human.foodCost = 3;
+			human.initRole();
 		}
 	}
 	
@@ -31,7 +33,7 @@ public class Hunter : Role {
 		if(!species.IsInSight(target)){
 			return 0;
 		}
-		movement.Seek(target.transform);
+		movement.PathTo(target.transform.position);
 		if (species.IsWithinReach(target))
 			return 2;
 		return 1;
@@ -39,7 +41,7 @@ public class Hunter : Role {
 
 	//roams at random
 	public Vector3 Roam(){
-		Vector3 targetDir = Quaternion.AngleAxis(Random.Range(-45,45), this.transform.up)*this.transform.forward * Random.Range(70,200);
+		Vector3 targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-45,45), this.transform.up)*this.transform.forward * UnityEngine.Random.Range(70,200);
 		return transform.position + targetDir;
 	}
 
@@ -61,16 +63,48 @@ public class Hunter : Role {
 		return null;
 	}
 
+	/// <summary>
+	/// Evaluates gameobject, 0 for nothing, 1 for flee, 2 for attack
+	/// </summary>
+	/// <returns>The threat.</returns>
+	/// <param name="obj">Object.</param>
+	public int EvaluateThreat(GameObject obj){
+		Species spec = obj.GetComponent<Species>();
+		if (spec != null && spec is Animal){
+			return 2;
+		}
+		return 0;
+	}
+
+
 	//stays in place until time is up, returns to village
 	protected int Gather(GameObject targetObject){
-		if (!FoodTags.Contains(targetObject.tag))
+		if (!human.IsWithinReach(targetObject)){
+			human.targetObject = null;
 			human.UpdateDecision();
-		else{
-			human.Fight(targetObject.GetComponent<Animal>());
-			human.food += Mathf.Max(targetObject.GetComponent<Animal>().size, human.foodLimit - human.food); //milliseconds
-			human.hasFood = true;
-			human.UpdateDecision ();
+			return 0;
 		}
+		if (targetObject.tag == "AnimalMeat"){
+			prop["food"] = Mathf.Max(Convert.ToSingle(prop["foodLimit"]), Convert.ToSingle(targetObject.GetComponent<PropertyTracker>()["size"]) + Convert.ToSingle(prop["food"])); //milliseconds
+			human.hasFood = true;
+			human.targetObject = null;
+			human.UpdateDecision ();
+			Debug.Log (this + "'s food is now: " + prop["food"]);
+			return 0;
+		}
+		bool attacked = false;
+		movement.PathTo(targetObject.transform.position);
+		foreach (Transform t in targetObject.transform) {
+			if (FoodTags.Contains(t.tag)){
+				human.Attack(targetObject.GetComponent<Animal>());
+				attacked = true;
+				break;
+			}
+		}
+		if (!attacked)
+			human.UpdateDecision();
+	
+
 		return 0;
 	}
 

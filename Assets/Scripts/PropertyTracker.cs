@@ -28,13 +28,16 @@ public class PropertyTracker : MonoBehaviour {
 		set {
 			health = value;
 			if(health <= 0) {
+				gameObject.tag = GetComponent<Species>() is Human ? "HumanMeat" : "AnimalMeat";
 				this.transform.parent.BroadcastMessage("ObjectDeath", this, SendMessageOptions.DontRequireReceiver);
                 GetComponent<Species>().enabled = false;
-                GetComponent<Role>().enabled = false;
+                //GetComponent<Role>().enabled = false;
                 GetComponent<Movement>().enabled = false;
-                foreach(Transform obj in transform)
-                    Object.Destroy(obj.gameObject);
+				//Object.Destroy(gameObject);
+				for (int i = 0; i < transform.childCount; i++)
+					Object.Destroy(transform.GetChild(i).gameObject);
                 gameObject.GetComponent<Renderer>().enabled = false;
+				gameObject.AddComponent<Decay>();
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Gatherer : Role {
 
@@ -15,6 +16,7 @@ public class Gatherer : Role {
 			human.Search = Roam;
 			human.CheckForFood = CheckForBush;
 			human.Gather = Gather;
+			human.EvaluateThreat = EvaluateThreat;
 			human.initRole();
 			human.foodCost = 1;
 		}
@@ -48,30 +50,47 @@ public class Gatherer : Role {
 		if(!species.IsInSight(target.transform.position)){
 			return 0;
 		}
-		movement.Seek(target.transform);
+		movement.PathTo(target.transform.position);
+		target.GetComponent<Collider>().isTrigger = true;
 		if (species.IsWithinReach(target))
 			return 2;
 		return 1;
 	}
 
+	/// <summary>
+	/// Evaluates gameobject, 0 for nothing, 1 for flee, 2 for attack
+	/// </summary>
+	/// <returns>The threat.</returns>
+	/// <param name="obj">Object.</param>
+	public int EvaluateThreat(GameObject obj){
+		Species spec = obj.GetComponent<Species>();
+		if (spec != null && spec is Animal){
+			if (spec.FoodTags.Contains("Human"))
+				return 1;
+		}
+		return 0;
+	}
+
 	//roams randomly
 	public Vector3 Roam(){
-		Vector3 targetDir = Quaternion.AngleAxis(Random.Range(-45,45), this.transform.up)*this.transform.forward * Random.Range(70,200);
+		Vector3 targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-45,45), this.transform.up)*this.transform.forward * UnityEngine.Random.Range(70,200);
 		return transform.position + targetDir;
 	}
 
 	//stays in place until time is up, returns to village
 	protected int Gather(GameObject targetObject){
-		if (!FoodTags.Contains(targetObject.tag))
+		if (!human.IsWithinReach(targetObject)){
+			human.targetObject = null;
 			human.UpdateDecision();
-		else{
-			human.food += Time.deltaTime; //milliseconds
-			if(human.food > human.foodLimit){
+			return 0;
+		}
+		foreach (Transform t in targetObject.transform) {
+			if (FoodTags.Contains(t.tag)){
+				prop["food"] = Mathf.Max(Convert.ToSingle(prop["food"]) + 1, Convert.ToSingle(prop["foodLimit"])); //milliseconds
 				targetObject.SendMessage("EatBerries");
 				human.hasFood = true;
 				human.UpdateDecision ();
-				//state = States.Returning;
-				
+				return 0;
 			}
 		}
 		return 0;

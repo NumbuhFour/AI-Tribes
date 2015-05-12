@@ -60,7 +60,7 @@ public class DecisionTree {
 
 	public bool Test(string t){
 		switch(t){
-			case "Predator":
+			case "Predators":
 				return Predators() != null;
 				break;
 			case "Food":

@@ -48,9 +48,10 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11424540}
   - 114: {fileID: 11493188}
+  - 114: {fileID: 11458572}
   m_Layer: 0
   m_Name: Hunter
-  m_TagString: Untagged
+  m_TagString: Hunter
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,17 +267,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  prop: {fileID: 0}
+  foodLimit: 1
   foodCost: 0
   strength: 0
   size: 0
+  attackSpeed: .5
   health: 0
+  attackTimer: 0
   hasFood: 0
   food: 0
   sightDistance: 50
   reachDistance: 10
   targetObject: {fileID: 0}
-  foodLimit: 1
   state: 0
+--- !u!114 &11458572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
 --- !u!114 &11493188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +308,7 @@ MonoBehaviour:
   FoodTags:
   - Animal
   species: {fileID: 0}
+  prop: {fileID: 0}
   human: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:
@@ -300,7 +318,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100004}
   m_Enabled: 0
   m_Radius: 1.09896398
-  m_Speed: 3.5
+  m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 public class Human : Species {
 
 	public DecisionTree decTree;
-	public float foodLimit;
+	public delegate int Check(GameObject obj);
+	public Check EvaluateThreat;
 
 	//will become decision tree
 	public enum States {
@@ -64,9 +67,16 @@ public class Human : Species {
 	//returns false if predators in the area
 	public GameObject CheckForPredators(){
 
-		GameObject[] predators = GameObject.FindGameObjectsWithTag("Animal");
-		Vector3 pos = this.transform.position;
-		foreach(GameObject b in predators){
+		GameObject[] animals = GameObject.FindGameObjectsWithTag("Animal");
+		GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
+		List<GameObject> threats = new List<GameObject>();
+		foreach(GameObject a in animals){
+			foreach(GameObject b in predators)
+			if (b.transform.parent == a.transform.parent && EvaluateThreat(a.transform.parent.gameObject) == 1)
+				threats.Add(a);
+		}
+
+		foreach(GameObject b in threats){
 			if(IsInSight(b.transform.parent.gameObject)){
 				return b.transform.parent.gameObject;
 			}
@@ -85,7 +95,7 @@ public class Human : Species {
 	// Update is called once per frame
 	public override void Update () {
 
-
+		base.Update();
 		switch(state){
 			case States.Searching: {
 				GameObject check = CheckForFood();
@@ -94,7 +104,7 @@ public class Human : Species {
 				}
 				else {
 					target = Wander();	
-					movement.Seek (target);
+					movement.PathTo (target);
 				}
 				break;
 			}
@@ -102,10 +112,12 @@ public class Human : Species {
 				if (targetObject == null)
 					targetObject = CheckForFood();
 				int result = SeekFood(targetObject);
-				if (result == 2){
-					if (FoodTags.Contains(targetObject.tag))
-						state = States.Gathering;
-					else
+				if (result == 2){ 
+					foreach (Transform t in targetObject.transform) {
+						if (FoodTags.Contains(t.tag))
+							state = States.Gathering;
+					}
+					if (state != States.Gathering)
 						UpdateDecision();
 				}
 				else if (result == 0)
@@ -113,12 +125,18 @@ public class Human : Species {
 				else{
 					if (FoodTags.Contains(targetObject.tag))
 						targetObject.GetComponent<Collider>().isTrigger = true;
-					movement.Seek(targetObject.transform);
+					movement.PathTo(targetObject.transform.position);
 				}
 				
 				break;
 			}
-			case States.Gathering: Gather(targetObject); break;
+			case States.Gathering: {
+				if (targetObject != null)
+					Gather(targetObject); 
+				else
+					UpdateDecision();
+				break;
+			}
 			case States.Returning: Return(); break;
 		}
 		
@@ -132,13 +150,13 @@ public class Human : Species {
 	protected void Return(){
 		if(!hasTarget){
 			Vector3 targetPos = GameObject.FindGameObjectWithTag("Village").transform.position;
-			targetPos.x += Random.Range(-20,20);
-			targetPos.z += Random.Range(-20,20);
+			targetPos.x += UnityEngine.Random.Range(-20,20);
+			targetPos.z += UnityEngine.Random.Range(-20,20);
 			target = targetPos;
 			hasTarget = true;
 		}
 		
-		movement.Seek(target);
+		movement.PathTo(target);
 		if(IsWithinReach(target)){
 			hasFood = false;
 			hasTarget = false;
@@ -159,8 +177,8 @@ public class Human : Species {
 		}
 		return targetObject.transform.position;*/
 		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance){
-			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
-			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * Random.Range(5, 100);
+			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
+			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
 			Vector3 wanderTarget = transform.position + new Vector3(dx, 0, dz);
 			return wanderTarget;
 		}
@@ -169,6 +187,8 @@ public class Human : Species {
 	}
 
 	public int HasFood(){
-		return food >= foodLimit ? 1 : 0;
+		float food = Convert.ToSingle(prop["food"]);
+		float foodLimit = Convert.ToSingle(prop["foodLimit"]);
+		return food > foodLimit ? 1 : 0;
 	}
 }

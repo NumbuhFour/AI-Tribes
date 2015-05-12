@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class Village : MonoBehaviour {
 
@@ -46,16 +47,16 @@ public class Village : MonoBehaviour {
 			totalElapsedTime = 0;
 		}
 		if (elapsedTime > breedingTime && food > childFoodCost){
-			float num = Random.Range(0.0f, 1.0f); 
-			float rotation = Random.Range(0.0f, 360.0f);
-			float strength = Random.Range(2, 4);
-			float speed = Random.Range(2, 4);
+			float num = UnityEngine.Random.Range(0.0f, 1.0f); 
+			float rotation = UnityEngine.Random.Range(0.0f, 360.0f);
+			float strength = UnityEngine.Random.Range(2, 4);
+			float speed = UnityEngine.Random.Range(2, 4);
 			bool type = CalculateDecision(strength, speed);
 			//GameObject obj = (GameObject)Instantiate(num < 0.5f ? gatherer : hunter, transform.position, Quaternion.identity);
 			GameObject obj = (GameObject)Instantiate(type ? hunter : gatherer, transform.position, Quaternion.AngleAxis(rotation, Vector3.up));
 
 			obj.GetComponent<Species>().strength = strength;
-			obj.GetComponent<Movement>().speedMult = speed;
+			obj.GetComponent<Movement>().speedMult = speed/3;
 
 			Data d = new Data();
 			d.hunter = type;
@@ -78,20 +79,20 @@ public class Village : MonoBehaviour {
 	public void OnTriggerEnter(Collider collider){
 		Human human = collider.gameObject.GetComponent<Human>();
 		if (human != null){
-			food += human.food;
+			food += Convert.ToSingle(human.prop["food"]);
 			for (int i = 0; i < newData.Count; i++){
 				if (newObjectData[i] == collider.gameObject){
 					Data d = new Data();
 					d.strength = newData[i].strength;
 					d.speed = newData[i].speed;
-					d.foodGain = newData[i].foodGain + human.food;
+					d.foodGain = newData[i].foodGain + Convert.ToSingle(human.prop["food"]);
 					d.foodCost = newData[i].foodCost;
 					newData.Insert(i, d);
 					newData.RemoveAt(i+1);
 					break;
 				}
 			}
-			human.food = 0;
+			human.prop["food"] = 0;
 			human.UpdateDecision();
 		}
 	}

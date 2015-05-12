@@ -33,9 +33,10 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11452170}
   - 114: {fileID: 11488786}
+  - 114: {fileID: 11422796}
   m_Layer: 0
   m_Name: Gatherer
-  m_TagString: Untagged
+  m_TagString: Gatherer
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +231,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: 
+--- !u!114 &11422796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
 --- !u!114 &11452170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,16 +257,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   FoodTags: []
+  prop: {fileID: 0}
+  foodLimit: 1
   foodCost: 0
   strength: 0
   size: 0
+  attackSpeed: 0
   health: 0
+  attackTimer: 0
   hasFood: 0
   food: 0
   sightDistance: 60
   reachDistance: 5
   targetObject: {fileID: 0}
-  foodLimit: 1
   state: 0
 --- !u!114 &11488786
 MonoBehaviour:
@@ -268,6 +285,7 @@ MonoBehaviour:
   FoodTags:
   - Bush
   species: {fileID: 0}
+  prop: {fileID: 0}
   human: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:
@@ -277,7 +295,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100002}
   m_Enabled: 0
   m_Radius: 1.09896398
-  m_Speed: 20
+  m_Speed: 15
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [RequireComponent(typeof(Movement))]
 public class Species : MonoBehaviour {
@@ -22,13 +23,17 @@ public class Species : MonoBehaviour {
 	}
 
 	public List<string> FoodTags;
+	public PropertyTracker prop;
 
 	protected Movement movement;
 
+	public float foodLimit;
 	public int foodCost;
 	public float strength;
 	public float size;
+	public float attackSpeed;
 	public float health;
+	public float attackTimer;
 	public bool hasFood = false;
 	public float food = 0;
 
@@ -56,32 +61,40 @@ public class Species : MonoBehaviour {
 	public virtual void Start () {
 		movement = GetComponentInParent<Movement>();
 		target = transform.position;
+		prop = GetComponent<PropertyTracker>();
+		prop["food"] = 0;
+		prop["foodLimit"] = foodLimit;
+		prop["strength"] = strength;
+		prop["size"] = size;
+		prop["attackSpeed"] = attackSpeed;
 	}
 	
 	// Update is called once per frame
 	public virtual void Update () {
-	
+		if (attackTimer > 0)
+			attackTimer -= Time.deltaTime;
+		if (prop.Health <= 0)
+			Die ();
 	}
 
 	public virtual void initRole(){
 	}
 
-	public void Fight(Species other){
-		if (strength > other.strength){
-			Kill(other);
-		}
-		else{
-			Kill(this);
+	public void Attack(Species other){
+		if (attackTimer <= 0){
+			int damage = (int)Convert.ToSingle(prop["strength"]);
+			other.prop.Health -= damage;
+			attackTimer = attackSpeed;
 		}
 	}
 
-	public virtual void Kill(Species other){
-		other.GetComponent<Species>().enabled = false;
-		other.GetComponent<Role>().enabled = false;
-		other.GetComponent<Movement>().enabled = false;
+	public virtual void Die(){
+		/*GetComponent<Species>().enabled = false;
+		GetComponent<Role>().enabled = false;
+		GetComponent<Movement>().enabled = false;
 		foreach(Transform obj in transform)
-			Object.Destroy(obj.gameObject);
-		other.gameObject.GetComponent<Renderer>().enabled = false;
+			GameObject.Destroy(obj.gameObject);
+		tag = this is Human ? "HumanMeat" : "AnimalMeat";*/
 	}
 
 	public void AddFoodTag(string tag){
