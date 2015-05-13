@@ -18,15 +18,29 @@ public class RadialMenu : MonoBehaviour {
 	//Cancel whatever they are doing and go idle
 	//If they are following the player or cancelled, go to work
 	public void OnCancel(){
-		//foreach(GameObject go in entSel.Selection) { /*Perform cancel*/ }
+		foreach(GameObject obj in entSel.Selected) 
+		{
+			if (obj.GetComponent<Human>() != null)
+				obj.GetComponent<Human>().UpdateDecision();
+		}
 		close ();
 	}
 	//Tell them to go home immediately
 	public void OnHome(){
+		foreach (GameObject obj in entSel.Selected){
+			if (obj.GetComponent<Human>() != null)
+				obj.GetComponent<Human>().state = Human.States.Returning;
+		}
 		close ();
 	}
 	//Tell them to follow the player
 	public void OnFollow(){
+		foreach (GameObject obj in entSel.Selected){
+			if (obj.GetComponent<Human>() != null){
+				obj.GetComponent<Human>().targetObject = GameObject.FindWithTag("Player");
+				obj.GetComponent<Human>().state = Human.States.Seeking;
+			}
+		}
 		close ();
 	}
 

@@ -112,7 +112,7 @@ public class Human : Species {
 				if (targetObject == null)
 					targetObject = CheckForFood();
 				int result = SeekFood(targetObject);
-				if (result == 2){ 
+				if (result == 2 && targetObject.GetComponent<Player>() == null){ 
 					foreach (Transform t in targetObject.transform) {
 						if (FoodTags.Contains(t.tag))
 							state = States.Gathering;
@@ -120,12 +120,11 @@ public class Human : Species {
 					if (state != States.Gathering)
 						UpdateDecision();
 				}
-				else if (result == 0)
+				else if (result == 0 && targetObject == null || targetObject.GetComponent<Player>() == null)
 					UpdateDecision();
 				else{
 					if (FoodTags.Contains(targetObject.tag))
 						targetObject.GetComponent<Collider>().isTrigger = true;
-					movement.PathTo(targetObject.transform.position);
 				}
 				
 				break;
@@ -176,10 +175,22 @@ public class Human : Species {
 			return targetObject.transform.position;
 		}
 		return targetObject.transform.position;*/
-		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance){
+		if (target == null || (target - transform.position).sqrMagnitude < reachDistance * reachDistance || taskTime > 10000){
+			//Debug.Log(taskTime);
+			taskTime = 0;
 			float dx = Mathf.Sin (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
 			float dz = Mathf.Cos (transform.rotation.eulerAngles.y) * UnityEngine.Random.Range(5, 100);
 			Vector3 wanderTarget = transform.position + new Vector3(dx, 0, dz);
+
+			Village village = GameObject.FindWithTag("Village").GetComponent<Village>();
+			Vector3 villageDirection = transform.position - village.transform.position;
+			villageDirection.Normalize();
+			villageDirection *= UnityEngine.Random.Range(0.0f, village.range / GetDistanceToVillage() * 0.5f);
+			//Debug.Log(villageDirection);
+			if (!float.IsNaN(villageDirection.x))
+				wanderTarget += villageDirection;
+
+			//Debug.Log (wanderTarget);
 			return wanderTarget;
 		}
 		return target;
@@ -189,6 +200,6 @@ public class Human : Species {
 	public int HasFood(){
 		float food = Convert.ToSingle(prop["food"]);
 		float foodLimit = Convert.ToSingle(prop["foodLimit"]);
-		return food > foodLimit ? 1 : 0;
+		return food >= foodLimit ? 1 : 0;
 	}
 }

@@ -19,14 +19,14 @@ namespace FSM {
 			if(species.targetObject != null){
 				float dist = (species.targetObject.transform.position - this.transform.position).magnitude;
 				anim.SetFloat(targetParameter, dist);
-				Debug.Log("CasdasfaUNT");
+				//Debug.Log("CasdasfaUNT");
 			}else{
-				Debug.Log("CUNT");
+				//Debug.Log("CUNT");
 			}
 		}
 		
 		protected override void OnEnd(){
-			Debug.Log("You're a biiiitch");
+			//Debug.Log("You're a biiiitch");
 		}
 	}
 }

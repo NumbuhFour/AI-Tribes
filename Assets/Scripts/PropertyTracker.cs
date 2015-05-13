@@ -28,6 +28,7 @@ public class PropertyTracker : MonoBehaviour {
 		set {
 			health = value;
 			if(health <= 0) {
+				Debug.Log (gameObject + " has been devoured.");
 				gameObject.tag = GetComponent<Species>() is Human ? "HumanMeat" : "AnimalMeat";
 				this.transform.parent.BroadcastMessage("ObjectDeath", this, SendMessageOptions.DontRequireReceiver);
                 GetComponent<Species>().enabled = false;

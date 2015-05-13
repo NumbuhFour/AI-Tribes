@@ -29,7 +29,8 @@ public class Hunter : Role {
 
 	//seeks target, returns false if out of range
 	public int SeekPrey(GameObject target){
-		
+		if (target == null)
+			return 0;
 		if(!species.IsInSight(target)){
 			return 0;
 		}

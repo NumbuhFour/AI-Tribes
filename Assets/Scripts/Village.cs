@@ -51,22 +51,22 @@ public class Village : MonoBehaviour {
 			float rotation = UnityEngine.Random.Range(0.0f, 360.0f);
 			float strength = UnityEngine.Random.Range(2, 4);
 			float speed = UnityEngine.Random.Range(2, 4);
-			bool type = CalculateDecision(strength, speed);
-			//GameObject obj = (GameObject)Instantiate(num < 0.5f ? gatherer : hunter, transform.position, Quaternion.identity);
-			GameObject obj = (GameObject)Instantiate(type ? hunter : gatherer, transform.position, Quaternion.AngleAxis(rotation, Vector3.up));
+			//bool type = CalculateDecision(strength, speed);
+			GameObject obj = (GameObject)Instantiate(num < 0.5f ? gatherer : hunter, transform.position, Quaternion.AngleAxis(rotation, Vector3.up));
+			//GameObject obj = (GameObject)Instantiate(type ? hunter : gatherer, transform.position, Quaternion.AngleAxis(rotation, Vector3.up));
 
 			obj.GetComponent<Species>().strength = strength;
 			obj.GetComponent<Movement>().speedMult = speed/3;
 
-			Data d = new Data();
-			d.hunter = type;
+			/*Data d = new Data();
+			//d.hunter = type;
 			d.foodCost = (int)childFoodCost;
 			d.strength = strength;
 			d.speed = speed;
 
 			newObjectData.Add(obj);
 			newData.Add(d);
-
+			*/
 			obj.GetComponent<Species>().foodCost = (int)childFoodCost;
 			food -= obj.GetComponent<Species>().foodCost;
 			elapsedTime = 0;
