@@ -46,6 +46,7 @@ public class PropertyTracker : MonoBehaviour {
 	public object this[string key]{
 		get { 
 			if(key == "health") return Health;
+			if (key == "maxHealth") return MaxHealth;
 			if(data.ContainsKey(key))
 				return data[key]; 
 			else return null;
@@ -53,6 +54,9 @@ public class PropertyTracker : MonoBehaviour {
 		set { 
 			if(key == "health") {
 				Health = (int)value;
+			}
+			else if (key == "maxHealth"){
+				MaxHealth = (int)value;
 			}
 			else data[key] = value; 
 		}
