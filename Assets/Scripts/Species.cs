@@ -81,7 +81,7 @@ public class Species : MonoBehaviour {
 	}
 
 	public void Attack(Species other){
-		if (attackTimer <= 0){
+		if (attackTimer <= 0 && other != null){
 			int damage = (int)Convert.ToSingle(prop["strength"]);
 			other.prop.Health = other.prop.Health - damage;
 			attackTimer = attackSpeed;

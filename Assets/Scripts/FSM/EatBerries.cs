@@ -10,7 +10,7 @@ namespace FSM {
 		protected override void OnEnd(){
 			GameObject target = this.GetComponent<Species>().targetObject;
 			if(target != null){
-				target.SendMessage("EatBerries", SendMessageOptions.RequireReceiver);
+				target.SendMessage("EatBerries", SendMessageOptions.DontRequireReceiver);
 				this.GetComponent<Species>().targetObject = null;
 				Animator anim = this.GetComponent<Animator>();
 				anim.SetBool(targetProperty,false);
