@@ -23,14 +23,9 @@ public class PropertyBar : MonoBehaviour {
 		float maxValue = Convert.ToSingle(prop[maxProperty]);
 
 		if (!float.IsNaN(value) && !float.IsNaN(maxValue) && maxValue != 0){
-			Vector3 textureScale = texture.transform.localScale;
-			textureScale.x = value / maxValue * 10;
-		
-			texture.transform.localScale = textureScale;
-			Vector3 pos = Camera.main.WorldToScreenPoint(transform.parent.position);
-			if (pos.x < Screen.width && pos.x > 0 && pos.y < Screen.height && pos.y > 0)
-				Debug.Log("Bar position: " + pos);
-			texture.transform.position = pos;
+			Vector3 scale = this.transform.localScale;
+			scale.x = value/maxValue;
+			this.transform.localScale = scale;
 		}
 
 	}
