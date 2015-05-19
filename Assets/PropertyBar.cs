@@ -5,7 +5,6 @@ using System;
 public class PropertyBar : MonoBehaviour {
 
 	PropertyTracker prop;
-	GUITexture texture;
 
 	//[System.Serializable]
 	public string property;
@@ -15,7 +14,6 @@ public class PropertyBar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		texture = GetComponent<GUITexture>();
 		prop = GetComponentInParent<PropertyTracker>();
 	}
 	
@@ -29,7 +27,10 @@ public class PropertyBar : MonoBehaviour {
 			textureScale.x = value / maxValue * 10;
 		
 			texture.transform.localScale = textureScale;
-			texture.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position);
+			Vector3 pos = Camera.main.WorldToScreenPoint(transform.parent.position);
+			if (pos.x < Screen.width && pos.x > 0 && pos.y < Screen.height && pos.y > 0)
+				Debug.Log("Bar position: " + pos);
+			texture.transform.position = pos;
 		}
 
 	}
