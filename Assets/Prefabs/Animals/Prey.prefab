@@ -48,23 +48,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &126018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 436756}
-  - 131: {fileID: 13184206}
-  - 114: {fileID: 11408352}
-  m_Layer: 0
-  m_Name: HealthBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &127082
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,18 +136,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459466}
-  m_RootOrder: 3
---- !u!4 &436756
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 459466}
   m_RootOrder: 2
 --- !u!4 &445756
 Transform:
@@ -190,7 +161,6 @@ Transform:
   m_Children:
   - {fileID: 463362}
   - {fileID: 445756}
-  - {fileID: 436756}
   - {fileID: 417084}
   - {fileID: 22439820}
   m_Father: {fileID: 0}
@@ -319,19 +289,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11408352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8813e71bbcf05a3478b1861ade1b2917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  property: health
-  maxProperty: maxHealth
 --- !u!114 &11409104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   property: health
-  maxProperty: maxhealth
+  maxProperty: maxHealth
 --- !u!114 &11457396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -687,12 +644,12 @@ MonoBehaviour:
   _state: 0
   FoodTags: []
   prop: {fileID: 0}
-  foodLimit: 0
+  foodLimit: 1
   foodCost: 0
   strength: 0
   size: 0
-  attackSpeed: 0
-  health: 0
+  attackSpeed: .5
+  health: 10
   attackTimer: 0
   hasFood: 0
   food: 0
@@ -712,25 +669,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   property: food
   maxProperty: foodLimit
---- !u!131 &13184206
-GUITexture:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126018}
-  m_Enabled: 1
-  m_Texture: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: .00689649582, a: .501960814}
-  m_PixelInset:
-    serializedVersion: 2
-    x: 0
-    y: 10
-    width: 10
-    height: 3
-  m_LeftBorder: 0
-  m_RightBorder: 0
-  m_TopBorder: 0
-  m_BottomBorder: 0
 --- !u!131 &13188306
 GUITexture:
   m_ObjectHideFlags: 1
@@ -822,7 +760,7 @@ RectTransform:
   m_Children:
   - {fileID: 22402898}
   m_Father: {fileID: 459466}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

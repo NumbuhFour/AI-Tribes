@@ -15,6 +15,7 @@ public class TrackPersonalHealth : MonoBehaviour {
 	
 	public void Update(){
 		if (props.MaxHealth != 0)
-			anim.SetFloat("Health", props.Health/props.MaxHealth);
+			anim.SetFloat("Health", (float)props.Health/(float)props.MaxHealth);
+		this.GetComponent<Species>().health = props.Health;
 	}
 }

@@ -6,17 +6,15 @@ namespace FSM {
 	public class Attack : FSMBehaviour {
 		
 		private Species species;
-		private Movement move;
-        private PropertyTracker myProp;
+		//private Movement move;
+        //private PropertyTracker myProp;
 		
-		private Vector3 roamGoal;
-		private float delay = 0;
+		//private float delay = 0;
 		protected override void OnBegin(){
 			if(species == null) species = GetComponent<Species>();
-			if(move == null) move = GetComponent<Movement>();
+			/*if(move == null) move = GetComponent<Movement>();
 			delay = 0;
-			roamGoal = Roam();
-            myProp = GetComponent<PropertyTracker>();
+            myProp = GetComponent<PropertyTracker>();*/
 		}
 		
 		protected override void OnUpdate(){
@@ -31,7 +29,7 @@ namespace FSM {
 				giveUp -= Time.deltaTime;
 			}*/
             
-            if(delay <= 0){
+            /*if(delay <= 0){
                 GameObject target = species.targetObject;
                 PropertyTracker prop = target.GetComponent<PropertyTracker>();
                 Debug.Log("I've targeted a fucking " + target);
@@ -45,12 +43,8 @@ namespace FSM {
 
             }else {
                 delay -= Time.deltaTime;
-            }
-		}
-		
-		public Vector3 Roam(){
-			Vector3 targetDir = Quaternion.AngleAxis(Random.Range(-45,45), this.transform.up)*this.transform.forward * Random.Range(70,200);
-			return transform.position + targetDir;
+            }*/
+            species.Attack(species.targetObject.GetComponent<Species>());
 		}
 	}
 }

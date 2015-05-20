@@ -35,23 +35,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &122550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 438100}
-  - 131: {fileID: 13148262}
-  - 114: {fileID: 11409368}
-  m_Layer: 0
-  m_Name: HealthBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &137242
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,18 +144,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 484146}
   m_RootOrder: 2
---- !u!4 &438100
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 484146}
-  m_RootOrder: 3
 --- !u!4 &443932
 Transform:
   m_ObjectHideFlags: 1
@@ -184,7 +155,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484146}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &468734
 Transform:
   m_ObjectHideFlags: 1
@@ -216,13 +187,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180518}
   m_LocalRotation: {x: 0, y: .958519697, z: 0, w: .28502658}
-  m_LocalPosition: {x: -107.001503, y: .100000001, z: 35.1061897}
+  m_LocalPosition: {x: -34.9000015, y: 0, z: -43.9000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468734}
   - {fileID: 483362}
   - {fileID: 414828}
-  - {fileID: 438100}
   - {fileID: 443932}
   - {fileID: 22409022}
   m_Father: {fileID: 0}
@@ -302,19 +272,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11409368
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8813e71bbcf05a3478b1861ade1b2917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  property: health
-  maxProperty: maxHealth
 --- !u!114 &11411438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   property: health
-  maxProperty: maxhealth
+  maxProperty: maxHealth
 --- !u!114 &11423862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,9 +352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 180518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a3ee2a7f6d64ba5469a255849446d1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activatorState: 
 --- !u!114 &11436042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,17 +449,17 @@ MonoBehaviour:
   _state: 0
   FoodTags: []
   prop: {fileID: 0}
-  foodLimit: 0
+  foodLimit: 1
   foodCost: 0
   strength: 0
   size: 0
-  attackSpeed: 0
-  health: 0
+  attackSpeed: .5
+  health: 50
   attackTimer: 0
   hasFood: 0
   food: 0
-  sightDistance: 0
-  reachDistance: 0
+  sightDistance: 50
+  reachDistance: 10
   targetObject: {fileID: 0}
 --- !u!114 &11439050
 MonoBehaviour:
@@ -577,8 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96a6132b1d271a4981755e381e5d169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
+  maxHealth: 50
+  health: 50
 --- !u!114 &11476784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,25 +574,6 @@ MonoBehaviour:
   activatorState: Wander
   targetTag: Prey
   targetParameter: TargetFound
---- !u!131 &13148262
-GUITexture:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122550}
-  m_Enabled: 1
-  m_Texture: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: .00689649582, a: .501960814}
-  m_PixelInset:
-    serializedVersion: 2
-    x: 0
-    y: 10
-    width: 10
-    height: 3
-  m_LeftBorder: 0
-  m_RightBorder: 0
-  m_TopBorder: 0
-  m_BottomBorder: 0
 --- !u!131 &13156994
 GUITexture:
   m_ObjectHideFlags: 1
@@ -709,7 +648,7 @@ RectTransform:
   m_Children:
   - {fileID: 22435280}
   m_Father: {fileID: 484146}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1}
